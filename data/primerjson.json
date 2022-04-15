@@ -1,0 +1,160 @@
+{
+	"parkings": [
+		
+		{
+			"parkingId": "1",
+			"parkingName": "Tres Cruces Shopping",
+			"weather": {
+				"temperature": "25 °C" ,
+				"humdity": "80% " ,
+				"precipitation": "15%",
+				"status": "Sunny"
+			},
+			"rate": [
+				{
+					"rateId": 1,
+					"minDuration": 180,
+					"price": 0
+				},
+				{
+					"rateId": 1,
+					"minDuration": 240,
+					"price": 100
+				}
+			],
+			"levels": [
+				{
+					"levelId": "Piso1",
+					"areas": [
+						{
+							"areaId": "A",
+							"slots": [
+								{
+									"lotId": 1,
+									"state": true
+								},
+								{
+									"lotId": 2,
+									"state": true
+								},
+								{
+									"lotId": 3,
+									"state": true
+								},
+								{
+									"lotId": 4,
+									"state": true
+								},
+								{
+									"lotId": 5,
+									"state": true
+								}
+							]
+						},
+						{
+							"areaId": "B",
+							"slots": [
+								{
+									"lotId": 1,
+									"state": true
+								},
+								{
+									"lotId": 2,
+									"state": true
+								},
+								{
+									"lotId": 3,
+									"state": true
+								},
+								{
+									"lotId": 4,
+									"state": true
+								},
+								{
+									"lotId": 5,
+									"state": true
+								}
+							]
+						},
+						{
+							"areaId": "C",
+							"slots": [
+								{
+									"lotId": 1,
+									"state": true
+								},
+								{
+									"lotId": 2,
+									"state": true
+								},
+								{
+									"lotId": 3,
+									"state": true
+								},
+								{
+									"lotId": 4,
+									"state": true
+								},
+								{
+									"lotId": 5,
+									"state": true
+								}
+							]
+						}
+					]
+					
+				},
+				{
+					"levelId": "Piso2",
+					"areas": [
+						{
+							"areaId": "A",
+							"slots": [
+								{
+									"lotId": 1,
+									"state": true
+								},
+								{
+									"lotId": 2,
+									"state": true
+								},
+								{
+									"lotId": 3,
+									"state": true
+								},
+								{
+									"lotId": 4,
+									"state": false
+								},
+								{
+									"lotId": 5,
+									"state": false
+								}
+							]
+						},
+						{
+							"areaId": "B",
+							"slots": [
+								{
+									"lotId": 1,
+									"state": true
+								},
+								{
+									"lotId": 2,
+									"state": false
+								},
+								{
+									"lotId": 3,
+									"state": true
+								}
+							]
+						}
+					]
+					
+				}
+			]
+			
+		},
+	
+	]
+}
