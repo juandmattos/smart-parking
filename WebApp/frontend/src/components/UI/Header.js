@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import parkingImage from '../../assets/parking.jpg'
 import classes from './Header.module.css'
 
-const Header = () => {
+const Header = ({weather, isLoading}) => {
   return (
     <>
       <header className={classes.header}>
@@ -17,9 +17,10 @@ const Header = () => {
             Parking APP
           </Link>
         </h1>
-        <p>
-          Clima: Soleado 25 grados (IN PROGRESS)
-        </p>
+          <div className={classes.weatherContainer}>
+            <p><b>Clima:</b></p>
+            <p><i>{isLoading ? <span>Loading...</span> : <span>{weather}</span>}</i></p>
+          </div>
         <Link 
           to={`/about`}
           style={{
@@ -27,7 +28,7 @@ const Header = () => {
             textDecoration: 'inherit'
           }}
         >
-          About
+          Conoce el proyecto
         </Link>
       </header>
       <div className={classes['main-image']}>
