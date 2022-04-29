@@ -8,6 +8,7 @@ const {
 const { makeParkingsJSON } = require('../utils')
 
 // GET URL/api/v1/parkings/
+  // Get all the parking info (available spots) in the DB
 const getParkings = (_, res) => {
   pool.query(allParkingsQuery, (error, results) => {
     if (error) throw error
@@ -32,6 +33,7 @@ const updateDB = (req, res) => {
   })
 }
 
+// Get general parkings info (name, description, etc)
 const getParkingsInfo = (_, res) => {
   pool.query(getParkingsInfoQuery, (error, results) => {
     if (error) throw error

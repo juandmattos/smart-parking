@@ -2,6 +2,8 @@ import React from 'react'
 import classes from './SpotItem.module.css'
 
 const SpotItem = props => {
+  // state is false ==> Spot is Free
+  // state is true  ==> Spot is Taken
   const {
     id: levelArea,
     name,
