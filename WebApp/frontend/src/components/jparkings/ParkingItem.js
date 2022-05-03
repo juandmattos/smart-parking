@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
+import { getNumberOfSpots } from '../../utils'
 import classes from './ParkingItem.module.css'
 
 const ParkingItem = (props) => {
+
+  console.log(props.levelList)
 
   return (
     <li className={classes.parking}>
@@ -26,7 +29,7 @@ const ParkingItem = (props) => {
             /
           </div>
           <div className={classes.spot}>
-            Lugares Totales: {props.spots}
+            {getNumberOfSpots(props.levelList)[0]} lugares disponibles de {getNumberOfSpots(props.levelList)[1]}
           </div>
         </div>
       </div>

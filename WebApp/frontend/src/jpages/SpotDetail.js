@@ -3,10 +3,9 @@ import { useParams } from 'react-router-dom'
 import SpotList from '../components/jparkings/SpotList'
 
 const SpotDetail = () => {
-  const { areaId } = useParams()
-  console.log(areaId)
+  const { parkingId, levelId, areaId } = useParams()
   return (
-    <SpotList />
+    <SpotList areaId={areaId} parkingId={parkingId} levelId={levelId} />
   )
 }
 

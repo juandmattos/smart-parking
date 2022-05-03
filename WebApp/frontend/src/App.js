@@ -9,6 +9,8 @@ import SpotDetail from './jpages/SpotDetail'
 import About from './jpages/About'
 import NotFound from './jpages/NotFound'
 
+import { MAKE_IT_REAL_TIME } from './utils'
+
 import { getWeather } from './api/apiWeather'
 
   // state is false ==> Spot is Free
@@ -18,18 +20,20 @@ function App() {
   const [weather, setWeather] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  // useEffect(() => {
-  //   const fetch = async () => {
-  //     try {
-  //       const response = await getWeather()
-  //       const data = response.data.weather
-  //       setWeather(`${data.charAt(0).toUpperCase()}${data.slice(1)}`)
-  //       setIsLoading(false)
-  //     } catch (error) {
-  //     }
-  //   }
-  //   fetch()
-  // }, [])
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await getWeather()
+        const data = response.data.weather
+        setWeather(`${data.charAt(0).toUpperCase()}${data.slice(1)}`)
+        setIsLoading(false)
+      } catch (error) {
+      }
+    }
+    if (MAKE_IT_REAL_TIME) {
+      fetch()
+    }
+  }, [])
 
   return (
     <Router>

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import SpotItem from './SpotItem'
+import LevelItem from './LevelItem'
 import Card from '../UI/Card'
 import classes from './LevelList.module.css'
 import { getIndividualParking } from '../../api/apiParking'
+import { MAKE_IT_REAL_TIME } from '../../utils'
 
 const LevelList = props => {
   const [levels, setLevels] = useState([])
@@ -18,22 +19,24 @@ const LevelList = props => {
       }
     }
     fetch()
+    // eslint-disable-next-line
   }, [])
 
-  console.log(levels)
-
-  // useEffect(() => {
-  //   const fetch = async () => {
-  //     try {
-  //       const response = await getIndividualParking(props.parkingId)
-  //       setLevels(response.data.levels)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   const interval = setInterval(() => fetch(), 5000);
-  //   return () => clearInterval(interval);
-  // }, [])
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await getIndividualParking(props.parkingId)
+        setLevels(response.data.levels)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    if (MAKE_IT_REAL_TIME) {
+      const interval = setInterval(() => fetch(), 5000)
+      return () => clearInterval(interval)
+    }
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <>
@@ -56,7 +59,11 @@ const LevelList = props => {
           <div>
             <div className={classes.container}>
               {levels.map((ele, index) => (
-                <p key={index}>LEVEL ITEMS</p>
+                <LevelItem
+                  key={index}
+                  level={ele}
+                  parkingId={props.parkingId}
+                />
               ))}
             </div>
           </div>
