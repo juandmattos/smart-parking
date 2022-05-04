@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { getOccupationDescription, getNumberOfSpotFromArea} from '../../utils'
+import { getOccupationDescription, getWording} from '../../utils'
 import classes from './LevelItem.module.css'
 
 const LevelItem = ({ level, parkingId }) => {
@@ -43,7 +43,7 @@ const LevelItem = ({ level, parkingId }) => {
       <div className={classes.spotInfo}>
         <div>
           <span className={classes.price}>
-            {getNumberOfSpotFromArea(level.areas)[0]} lugares disponibles de {getNumberOfSpotFromArea(level.areas)[1]}
+            {getWording(level.areas, false)}
           </span>
         </div>
       </div>

@@ -13,6 +13,24 @@ const getOccupationDescription = (occ) => {
   }
 }
 
+const getWording = (list, isLevel) => {
+  let freeSpots = 0
+  let allSpots = 0
+  if (isLevel) {
+    [freeSpots, allSpots] = getNumberOfSpots(list)
+  } else {
+    [freeSpots, allSpots] = getNumberOfSpotFromArea(list)
+  }
+  let wording = ''
+
+  if (freeSpots === 1) {
+    wording = `1 lugar disponible de ${allSpots}`
+  } else {
+    wording = `${freeSpots} lugares disponibles de ${allSpots}`
+  }
+  return wording
+}
+
 const getNumberOfSpots = (levels) => {
   let freeSpaces = 0
   let totalSpaces = 0
@@ -49,5 +67,6 @@ export {
   getOccupationDescription,
   getNumberOfSpotFromArea,
   getNumberOfSpots,
+  getWording,
   MAKE_IT_REAL_TIME
 }

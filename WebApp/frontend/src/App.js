@@ -13,9 +13,6 @@ import { MAKE_IT_REAL_TIME } from './utils'
 
 import { getWeather } from './api/apiWeather'
 
-  // state is false ==> Spot is Free
-  // state is true  ==> Spot is Taken
-  
 function App() {
   const [weather, setWeather] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -41,8 +38,8 @@ function App() {
       <main>
         <Routes>
           <Route
-              path='/'
-              element={<Navigate to='/parkings' replace />}
+            path='/'
+            element={<Navigate to='/parkings' replace />}
           />
           <Route path='/parkings' element={<Parkings />} />
           <Route path='/parkings/:parkingId' element={<LevelDetail />} />

@@ -62,6 +62,7 @@ const AvailableParkings = props => {
       spots={parking.spots}
       levels={parking.levels?.length || 0}
       levelList={parking.levels || []}
+      disabled={parking.disabled}
     />
   ))
 
