@@ -1,0 +1,19 @@
+{
+  "parking_name":"Parking Tres Cruces",
+  "parking_address":"Bvr. Gral. Artigas 1825, Montevideo, Uruguay",
+  "description":"Parking que se encuentra en el shopping de tres cruces",
+  "timestamp":"02/05/2022 17:00:00",
+  "device_address":"0013A2004147A0AA",
+  "device_latitude":-34.89429684062983,
+  "device_longitude":-56.165979541252796,
+  "temperature":12,
+  "humidity":50,
+  "parking_uuid":"cf0158d3-42e1-4744-b477-cf45b7de960a",
+  "parking_id":"1",
+  "level_id":"1",
+  "area_id":"1",
+  "area_name":"A",
+  "spots":"5",
+  "slots":[
+  ]
+}
