@@ -1,4 +1,4 @@
-const MAKE_IT_REAL_TIME = false
+const MAKE_IT_REAL_TIME = true
 
 const getOccupationDescription = (occ) => {
   switch(occ){

@@ -1,17 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import Header from './components/UI/Header'
-
-import Parkings from './jpages/Parkings'
-import LevelDetail from './jpages/LevelDetail'
-import AreaDetail from './jpages/AreaDetail'
-import SpotDetail from './jpages/SpotDetail'
-import About from './jpages/About'
-import NotFound from './jpages/NotFound'
-
+import LoadingSpinner from './components/UI/LoadingSpinner'
 import { MAKE_IT_REAL_TIME } from './utils'
-
 import { getWeather } from './api/apiWeather'
+
+const Parkings = lazy(() => import('./jpages/Parkings'))
+const LevelDetail = lazy(() => import('./jpages/LevelDetail'))
+const AreaDetail = lazy(() => import('./jpages/AreaDetail'))
+const SpotDetail = lazy(() => import('./jpages/SpotDetail'))
+const About = lazy(() => import('./jpages/About'))
+const NotFound = lazy(() => import('./jpages/NotFound'))
 
 function App() {
   const [weather, setWeather] = useState('')
@@ -33,24 +32,32 @@ function App() {
   }, [])
 
   return (
-    <Router>
-      <Header weather={weather} isLoading={isLoading} />
-      <main>
-        <Routes>
-          <Route
-            path='/'
-            element={<Navigate to='/parkings' replace />}
-          />
-          <Route path='/parkings' element={<Parkings />} />
-          <Route path='/parkings/:parkingId' element={<LevelDetail />} />
-          <Route path='/parkings/:parkingId/:levelId' element={<AreaDetail />} />
-          <Route path='/parkings/:parkingId/:levelId/:areaId' element={<SpotDetail />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/notfound' element={<NotFound />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </main>
-    </Router>
+    <Suspense
+      fallback={
+        <div className='centeredSpinner'>
+          <LoadingSpinner />
+        </div>
+      }
+    >
+      <Router>
+        <Header weather={weather} isLoading={isLoading} />
+        <main>
+          <Routes>
+            <Route
+              path='/'
+              element={<Navigate to='/parkings' replace />}
+            />
+            <Route path='/parkings' element={<Parkings />} />
+            <Route path='/parkings/:parkingId' element={<LevelDetail />} />
+            <Route path='/parkings/:parkingId/:levelId' element={<AreaDetail />} />
+            <Route path='/parkings/:parkingId/:levelId/:areaId' element={<SpotDetail />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/notfound' element={<NotFound />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </main>
+      </Router>
+    </Suspense>
   )
 }
 
