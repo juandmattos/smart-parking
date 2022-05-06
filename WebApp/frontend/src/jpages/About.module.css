@@ -1,0 +1,32 @@
+.about-link {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.about-link a {
+  color: #fff;
+}
+
+.about-link a:hover {
+  color: #ff6a95;
+}
+
+.about h1 {
+  margin-bottom: 20px;
+}
+
+.about p {
+  margin: 10px 0;
+}
+
+.centered {
+  margin: 3rem auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
