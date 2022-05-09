@@ -18,13 +18,13 @@ def my_data_received_callback_from_arduino(xbee_message):
     # FORMAT A JSON MODEL FOR PARKING
     with open(dirgeneral+'/producerXBEE.json') as f:
         Json = json.load(f)
-        
+
     address = xbee_message.remote_device.get_64bit_addr()
     Json['device_address'] = str(address)
     data = xbee_message.data.decode("utf8")
     is_broadcast = xbee_message.is_broadcast
     Json['timestamp'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    
+
     num_puestos = 5    
     for i in range(1,num_puestos + 1):
         Json['slots'].append({})
@@ -38,15 +38,23 @@ def my_data_received_callback_from_arduino(xbee_message):
         Json['temperature'] = LvlData2.group(3)
         Json['humidity'] = LvlData2.group(4)
     
+    # if '47A0E5' in str(address):
+    #     Json['area_name'] = "A"
+    #     topic = Json['parking_id']+"_"+Json['level_id']+"_"+Json['area_id']+"_"+Json['area_name'] 
+    #     PRODUCER.send(topic, value=Json)
+    #     print("Received data from {} with the next values {} ,  {} ,  {}".format(address, data, datetime.now().strftime('%Y-%m-%d %H:%M:%S'), is_broadcast))
+    # elif '814D79' in str(address):
+    #     Json['area_name'] = "B"
+    #     topic = Json['parking_id']+"_"+Json['level_id']+"_"+Json['area_id']+"_"+Json['area_name'] 
+    #     PRODUCER.send(topic, value=Json)
+    
     if '47A0E5' in str(address):
         Json['area_name'] = "A"
-        topic = Json['parking_id']+"_"+Json['level_id']+"_"+Json['area_id']+"_"+Json['area_name'] 
-        PRODUCER.send(topic, value=Json)
-        print("Received data from {} with the next values {} ,  {} ,  {}".format(address, data, datetime.now().strftime('%Y-%m-%d %H:%M:%S'), is_broadcast))
     elif '814D79' in str(address):
         Json['area_name'] = "B"
-        topic = Json['parking_id']+"_"+Json['level_id']+"_"+Json['area_id']+"_"+Json['area_name'] 
-        PRODUCER.send(topic, value=Json)
+    
+    topic = Json['parking_name']
+    PRODUCER.send(topic, value=Json)
     
 def main():
     print("Hello World!")
