@@ -48,3 +48,7 @@ h3 {
   cursor: not-allowed;
   color: #525770;
 }
+
+.summaryLink {
+  font-size: 0.8rem;
+}

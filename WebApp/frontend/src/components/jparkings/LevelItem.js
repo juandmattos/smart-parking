@@ -1,17 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { getOccupationDescription, getWording} from '../../utils'
+import {
+  getOccupationDescription,
+  getWording,
+  EMPTY,
+  ALMOST_EMPTY,
+  ALMOST_FULL,
+  FULL,
+} from '../../utils'
 import classes from './LevelItem.module.css'
 
 const LevelItem = ({ level, parkingId }) => {
 
   const getClass = (occupation) => {
     switch(occupation){
-      case 'low':
+      case EMPTY:
         return classes.free
-      case 'mid':
+      case ALMOST_EMPTY:
+        return classes.free  
+      case ALMOST_FULL:
         return classes.mid  
-      case 'high':
+      case FULL:
         return classes.used  
       default:
         return ''      
@@ -20,7 +29,7 @@ const LevelItem = ({ level, parkingId }) => {
 
   return (
     <div
-      className={`${classes.container} ${getClass(level.occupation)}`}
+      className={`${classes.container} ${getClass(level.level_occupation)}`}
     >
       <div className={classes.info}>
         <span className={classes.levelArea}>
@@ -31,12 +40,12 @@ const LevelItem = ({ level, parkingId }) => {
               textDecoration: 'inherit'
             }}
           >
-            <h2>{level.name}</h2>
+            <h2>{level.level_name}</h2>
           </Link>
         </span>
         <div>
           <span className={classes.desc}>
-            {getOccupationDescription(level.occupation)}
+            {getOccupationDescription(level.level_occupation)}
           </span>
         </div>
       </div>

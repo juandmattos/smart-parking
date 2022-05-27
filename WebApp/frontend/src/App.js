@@ -9,6 +9,7 @@ const Parkings = lazy(() => import('./jpages/Parkings'))
 const LevelDetail = lazy(() => import('./jpages/LevelDetail'))
 const AreaDetail = lazy(() => import('./jpages/AreaDetail'))
 const SpotDetail = lazy(() => import('./jpages/SpotDetail'))
+const SummaryParking = lazy(() => import('./jpages/SummaryPage'))
 const About = lazy(() => import('./jpages/About'))
 const NotFound = lazy(() => import('./jpages/NotFound'))
 
@@ -51,6 +52,7 @@ function App() {
             <Route path='/parkings/:parkingId' element={<LevelDetail />} />
             <Route path='/parkings/:parkingId/:levelId' element={<AreaDetail />} />
             <Route path='/parkings/:parkingId/:levelId/:areaId' element={<SpotDetail />} />
+            <Route path='/parkings/summary/:parkingId' element={<SummaryParking />} />
             <Route path='/about' element={<About />} />
             <Route path='/notfound' element={<NotFound />} />
             <Route path='*' element={<NotFound />} />

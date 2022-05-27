@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import Card from '../UI/Card'
+import classes from './SummaryParking.module.css'
 import LoadingSpinner from '../UI/LoadingSpinner'
-import ParkingItem from './ParkingItem'
-import classes from './AvailableParkings.module.css'
-import { getParkingJSON } from '../../api/apiParking'
+import { getIndividualParking } from '../../api/apiParking'
 import { MAKE_IT_REAL_TIME } from '../../utils'
 
-const AvailableParkings = props => {
+const SummaryParking = ({ parkingId }) => {
   const [parkings, setParkings] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -14,7 +12,7 @@ const AvailableParkings = props => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const response = await getParkingJSON()
+        const response = await getIndividualParking(parkingId)
         setIsLoading(false)
         setParkings(response.data)
         setError(false)
@@ -23,12 +21,13 @@ const AvailableParkings = props => {
       }
     }
     fetch()
+    // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
     const fetch = async () => {
       try {
-        const response = await getParkingJSON()
+        const response = await getIndividualParking(parkingId)
         setIsLoading(false)
         setParkings(response.data)
         setError(false)
@@ -44,18 +43,19 @@ const AvailableParkings = props => {
     // eslint-disable-next-line
   }, [])
 
-
   if (error) {
-    <section className={classes.parkingsLoading}>
-      <div className={classes.centered}>
-        Un error ocurrió buscando los parkings..
-      </div>
-    </section>
+    return (
+      <section className={classes.container}>
+        <div className={classes.centered}>
+          <h2>Un error ocurrió buscando el parking..</h2>
+        </div>
+      </section>
+    )
   }
 
   if (isLoading && !error) {
     return (
-      <section className={classes.parkingsLoading}>
+      <section className={classes.container}>
         <div className={classes.centered}>
           <LoadingSpinner />
         </div>
@@ -65,33 +65,19 @@ const AvailableParkings = props => {
 
   if (parkings.length === 0) {
     return (
-      <section className={classes.parkingsLoading}>
+      <section className={classes.container}>
         <div className={classes.centered}>
-          No hay parkings en la app..
+          <h2>No se encontro el parking seleccionado..</h2>
         </div>
       </section>
     )
-  }
-
-  const parkingsList = parkings.map((parking, index) => (
-    <ParkingItem
-      key={`${parking.parking_id}-${index}`}
-      id={parking.parking_id}
-      name={parking.parking_name}
-      description={`${parking.parking_description} ${parking.parking_address}`}
-      levels={parking.levels?.length || 0}
-      levelList={parking.levels || []}
-      disabled={parking.parking_closed}
-    />
-  ))
+  }  
 
   return (
-    <section className={classes.parkings}>
-      <Card>
-        <ul>{parkingsList}</ul>
-      </Card>
+    <section className={classes.container}>
+      <h2>PANTALLA COMPLETA</h2>
     </section>
   )
 }
 
-export default AvailableParkings
+export default SummaryParking
