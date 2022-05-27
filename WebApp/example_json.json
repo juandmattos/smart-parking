@@ -1,85 +1,108 @@
 [
-  {
+    {
+      "parking_id" : "1",
       "name": "Parking Tres Cruces",
-      "spots": "5",
-      "levels": [
-          {
-              "areas": [
-                  {
-                      "slots": [
-                          {
-                              "price": "20",
-                              "state": true,
-                              "slot_id": "1"
-                          },
-                          {
-                              "price": "100",
-                              "state": false,
-                              "slot_id": "2"
-                          }
-                      ],
-                      "area_id": "A"
-                  }
-              ],
-              "level_id": "1",
-              "occupation": "25"
-          },
-          {
-              "areas": [
-                  {
-                      "slots": [
-                          {
-                              "price": "30",
-                              "state": true,
-                              "slot_id": "1"
-                          },
-                          {
-                              "price": "30",
-                              "state": false,
-                              "slot_id": "2"
-                          }
-                      ],
-                      "area_id": "A"
-                  },
-                  {
-                      "slots": [
-                          {
-                              "price": "30",
-                              "state": false,
-                              "slot_id": "1"
-                          }
-                      ],
-                      "area_id": "B"
-                  }
-              ],
-              "level_id": "2",
-              "occupation": "60"
-          }
-      ],
-      "parking_id": "1",
-      "description": "Parking que se encuentra en el shopping de tres cruces en Bvar. Gral. Artigas 1825, Montevideo, Uruguay"
-  },
-  {
+      "description": "Parking que se encuentra en el shopping de tres cruces en Bvar. Gral. Artigas 1825, Montevideo, Uruguay",
+      "disabled": false,
+      "levels": [{
+        "level_id": "1",
+        "name": "Piso 1",
+        "occupation": "high",
+        "areas": [{
+          "area_id": "1",
+          "description": "Short Description",
+          "occupation": "high",
+          "name": "A",
+          "slots": [{
+            "slot_id": "1",
+            "price": "2000",
+            "state": true
+          }, {
+            "slot_id": "2",
+            "price": "100",
+            "state": true
+          }, {
+            "slot_id": "3",
+            "price": "1000",
+            "state": true
+          }]
+        }]
+      }, {
+        "level_id": "2",
+        "name": "Piso 2",
+        "occupation": "low",
+        "areas": [{
+          "area_id": "1",
+          "description": "Short Description",
+          "occupation": "high",
+          "name": "A",
+          "slots": [{
+            "slot_id": "1",
+            "price": "30",
+            "state": false
+          }, {
+            "slot_id": "2",
+            "price": "300",
+            "state": true
+          }]
+        }, {
+          "area_id": "2",
+          "description": "Short Description",
+          "name": "B",
+          "occupation": "high",
+          "slots": [{
+            "slot_id": "1",
+            "price": "30",
+            "state": false
+          }]
+        }]
+      }]
+    },
+    {
+      "parking_id" : "2",
       "name": "Parking Punta Carretas Shopping",
-      "spots": "1",
-      "levels": [
-          {
-              "areas": [
-                  {
-                      "slots": [
-                          {
-                              "price": "200",
-                              "state": false,
-                              "slot_id": "1"
-                          }
-                      ],
-                      "area_id": "A"
-                  }
-              ],
-              "level_id": "1"
-          }
-      ],
-      "parking_id": "2",
-      "description": "Parking que se encuentra en el shopping de punta carretas en José Ellauri 350, Montevideo, Uruguay"
-  }
-]
+      "description": "Parking que se encuentra en el shopping de punta carretas en José Ellauri 350, Montevideo, Uruguay",
+      "disabled": false,
+      "levels": [{
+        "level_id": "1",
+        "name": "Piso 1",
+        "occupation": "mid",
+        "areas": [{
+          "area_id": "1",
+          "description": "Short Description",
+          "name": "A",
+          "occupation": "high",
+          "slots": [{
+            "slot_id": "1",
+            "price": "200",
+            "state": false
+          }]
+        },{
+          "area_id": "2",
+          "description": "Short Description",
+          "name": "B",
+          "occupation": "high",
+          "slots": [{
+            "slot_id": "1",
+            "price": "200",
+            "state": true
+          }]
+        }]
+      },{
+        "level_id": "2",
+        "name": "Piso 2",
+        "occupation": "low",
+        "areas": [{
+          "area_id": "1",
+          "description": "Short Description",
+          "name": "A",
+          "occupation": "high",
+          "slots": [{
+            "slot_id": "1",
+            "price": "200",
+            "state": false
+          }]
+        }]
+      }]
+    }
+  ]

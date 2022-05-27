@@ -1,4 +1,9 @@
-const MAKE_IT_REAL_TIME = true
+const MAKE_IT_REAL_TIME = false
+
+const EMPTY = 'Empty'
+const ALMOST_EMPTY = 'Almost Empty'
+const ALMOST_FULL = 'Almost Full'
+const FULL = 'Full'
 
 const getOccupationDescription = (occ) => {
   switch(occ){
@@ -68,5 +73,9 @@ export {
   getNumberOfSpotFromArea,
   getNumberOfSpots,
   getWording,
-  MAKE_IT_REAL_TIME
+  MAKE_IT_REAL_TIME,
+  EMPTY,
+  ALMOST_EMPTY,
+  ALMOST_FULL,
+  FULL
 }

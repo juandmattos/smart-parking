@@ -1,0 +1,143 @@
+[
+    {
+        "parking_id" : "1",
+        "parking_name": "Parking Tres Cruces",
+        "parking_description": "Parking que se encuentra en el shopping de tres cruces",
+        "parking_address": "Bvar. Gral. Artigas 1825, Montevideo, Uruguay",
+        "parking_closed": false,
+        "parking_latitude": "-34.894708",
+        "parking_longitude": "-56.155346",
+        "levels": [{
+        "level_id": "1",
+        "level_name": "Piso 1",
+        "level_occupation": "Full",
+        "level_average_price": "2000",
+        "level_available_spots": "0",
+        "level_total_spots": "3",
+        "areas": [{
+            "area_id": "1",
+            "area_description": "Short Description",
+            "area_occupation": "Full",
+            "area_name": "A",
+            "area_average_price": "2000",
+            "area_available_spots": "0",
+            "area_total_spots": "3",        
+            "slots": [{
+                "slot_id": "1",
+                "slot_price": "2000",
+                "slot_state": true
+            }, {
+                "slot_id": "2",
+                "slot_price": "3000",
+                "slot_state": true
+            }, {
+                "slot_id": "3",
+                "slot_price": "1000",
+                "slot_state": true
+            }]
+        }]
+        }, {
+        "level_id": "2",
+        "level_name": "Piso 2",
+        "level_occupation": "Almost Empty",
+        "level_average_price": "30",
+        "level_available_spots": "2",
+        "level_total_spots": "3",    
+        "areas": [{
+            "area_id": "1",
+            "area_description": "Short Description",
+            "area_occupation": "Almost Full",
+            "area_name": "A",
+            "area_average_price": "30",
+            "area_available_spots": "1",
+            "area_total_spots": "2",        
+            "slots": [{
+                "slot_id": "1",
+                "slot_price": "30",
+                "slot_state": false
+            }, {
+                "slot_id": "2",
+                "slot_price": "30",
+                "slot_state": true          
+            }]
+        }, {
+            "area_id": "2",
+            "area_description": "Short Description",
+            "area_name": "B",
+            "area_occupation": "Empty",
+            "area_average_price": "30",
+            "area_available_spots": "1",
+            "area_total_spots": "1",        
+            "slots": [{
+                "slot_id": "1",
+                "slot_price": "30",
+                "slot_state": false
+            }]
+        }]
+        }]
+    },
+    {
+        "parking_id" : "2",
+        "parking_name": "Parking Punta Carretas Shopping",
+        "parking_description": "Parking que se encuentra en el shopping de punta carretas en José Ellauri 350, Montevideo, Uruguay",
+        "parking_closed": false,
+        "parking_latitude": "-34.894708",
+        "parking_longitude": "-56.155346",
+        "levels": [{
+            "level_id": "1",
+            "level_name": "Piso 1",
+            "level_occupation": "Almost Full",
+            "level_average_price": "200",
+            "level_available_spots": "1",
+            "level_total_spots": "2",    
+            "areas": [{
+                "area_id": "1",
+                "area_description": "Short Description",
+                "area_name": "A",
+                "area_occupation": "Empty",
+                "area_average_price": "200",
+                "area_available_spots": "1",
+                "area_total_spots": "1",        
+                "slots": [{
+                    "slot_id": "1",
+                    "slot_price": "200",
+                    "slot_state": false
+                }]
+            },{
+                "area_id": "2",
+                "area_description": "Short Description",
+                "area_name": "B",
+                "area_occupation": "Full",
+                "area_average_price": "200",
+                "area_available_spots": "0",
+                "area_total_spots": "1",        
+                "slots": [{
+                    "slot_id": "1",
+                    "slot_price": "200",
+                    "slot_state": true
+                }]
+            }]
+            },{
+            "level_id": "2",
+            "level_name": "Piso 2",
+            "level_occupation": "Empty",
+            "level_average_price": "200",
+            "level_available_spots": "1",
+            "level_total_spots": "1",    
+            "areas": [{
+                "area_id": "1",
+                "area_description": "Short Description",
+                "area_name": "A",
+                "area_occupation": "Empty",
+                "area_average_price": "200",
+                "area_available_spots": "1",
+                "area_total_spots": "1",
+                "slots": [{
+                    "slot_id": "1",
+                    "slot_price": "200",
+                    "slot_state": false
+                }]
+            }]
+        }]
+    }
+]
