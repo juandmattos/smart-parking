@@ -141,9 +141,17 @@ const SummaryParking = ({ parkingId }) => {
                       <h2>Sector {area.area_name}</h2>
                     </Link>
                   </span>
-                  <div>
+                  <div
+                  style={{
+                      display: 'flex',
+                      flexDirection: 'column'
+                    }}
+                  >
                     <span className={classes.desc}>
                       {getOccupationDescription(area.area_occupation)}
+                    </span>
+                    <span className={classes.averagePrice}>
+                      {`Precio Promedio: $${area.area_average_price}`}
                     </span>
                   </div>
                 </div>

@@ -88,6 +88,12 @@
   font-size: 0.7rem;
 }
 
+.averagePrice{
+  font-style: italic;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
 .price {
   margin-top: 0.25rem;
   font-weight: bold;
