@@ -8,7 +8,7 @@ const FULL = 'Full'
 const PARKING_API_CODE = 'parkings'
 
 const getOccupationDescription = (occ) => {
-  switch(occ){
+  switch(occ) {
     case EMPTY:
       return 'Relativamente Libre'
     case ALMOST_EMPTY:
