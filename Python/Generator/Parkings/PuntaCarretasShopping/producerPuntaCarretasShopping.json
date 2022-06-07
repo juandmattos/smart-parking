@@ -1,0 +1,18 @@
+{
+  "parking_name": "PuntaCarretasShopping",
+  "parking_address": "Republica, 350, Jose Ellauri, Punta Carretas, Montevideo, 11303, Uruguay",
+  "parking_description": "Parking ubicado en el shopping de Punta Carretas",
+  "device_timestamp": "",
+  "device_id": "",
+  "parking_latitude": -34.9240989,
+  "parking_longitude": -56.1588356,
+  "parking_temperature": 0,
+  "parking_humidity": 0,
+  "parking_uuid": "a36e97c1-52f4-4783-9c5e-e81e5e3b29ac",
+  "parking_id": "2",
+  "device_level_id": "",
+  "device_area_id": "",
+  "device_area_name": "",
+  "device_spots": "",
+  "device_slots": []
+}

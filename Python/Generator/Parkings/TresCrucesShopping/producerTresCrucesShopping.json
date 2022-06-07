@@ -1,0 +1,18 @@
+{
+  "parking_name": "TresCrucesShopping",
+  "parking_address": "La Pasiva, 1825, Bulevar General Artigas, Tres Cruces, Montevideo, 11600, Uruguay",
+  "parking_description": "Parking ubicado en el shopping de Tres Cruces",
+  "device_timestamp": "",
+  "device_id": "",
+  "parking_latitude": -34.8943081,
+  "parking_longitude": -56.1664375,
+  "parking_temperature": 0,
+  "parking_humidity": 0,
+  "parking_uuid": "3746b668-c1c6-4364-a000-e27d57c9551f",
+  "parking_id": "1",
+  "device_level_id": "",
+  "device_area_id": "",
+  "device_area_name": "",
+  "device_spots": "",
+  "device_slots": []
+}

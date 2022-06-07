@@ -1,0 +1,74 @@
+{
+  "areas": [
+    {
+      "area_id": "1",
+      "area_name": "A",
+      "area_description": "shot description",
+      "area_occupation": "Almost Full",
+      "area_occupied_slots": "3",
+      "area_total_slots": 5,
+      "slots": [
+        {
+          "slot_id": "1",
+          "slot_state": false,
+          "slot_price": ""
+        },
+        {
+          "slot_id": "2",
+          "slot_state": true,
+          "slot_price": ""
+        },
+        {
+          "slot_id": "3",
+          "slot_state": false,
+          "slot_price": ""
+        },
+        {
+          "slot_id": "4",
+          "slot_state": true,
+          "slot_price": ""
+        },
+        {
+          "slot_id": "5",
+          "slot_state": true,
+          "slot_price": ""
+        }
+      ]
+    },
+    {
+      "area_id": "1",
+      "area_name": "B",
+      "area_description": "shot description",
+      "area_occupation": "Almost Empty",
+      "area_occupied_slots": "2",
+      "area_total_slots": 5,
+      "slots": [
+        {
+          "slot_id": "1",
+          "slot_state": false,
+          "slot_price": ""
+        },
+        {
+          "slot_id": "2",
+          "slot_state": true,
+          "slot_price": ""
+        },
+        {
+          "slot_id": "3",
+          "slot_state": true,
+          "slot_price": ""
+        },
+        {
+          "slot_id": "4",
+          "slot_state": false,
+          "slot_price": ""
+        },
+        {
+          "slot_id": "5",
+          "slot_state": false,
+          "slot_price": ""
+        }
+      ]
+    }
+  ]
+}
