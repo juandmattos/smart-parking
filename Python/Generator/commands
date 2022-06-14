@@ -1,0 +1,20 @@
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p PuntaCarretasShopping -l 1 -i 1 -a A --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p PuntaCarretasShopping -l 1 -i 2 -a B --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p PuntaCarretasShopping -l 1 -i 3 -a C --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p PuntaCarretasShopping -l 2 -i 1 -a A --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p PuntaCarretasShopping -l 2 -i 2 -a B --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p PuntaCarretasShopping -l 2 -i 3 -a C --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p PuntaCarretasShopping -l 2 -i 4 -a D --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p PuntaCarretasShopping -l 3 -i 1 -a A --device --qt-slots 7 &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p PuntaCarretasShopping -l 3 -i 2 -a B --device --qt-slots 5 &
+
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p TresCrucesShopping -l 1 -i 1 -a A --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p TresCrucesShopping -l 1 -i 2 -a B --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p TresCrucesShopping -l 1 -i 3 -a C --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p TresCrucesShopping -l 2 -i 1 -a A --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p TresCrucesShopping -l 2 -i 2 -a B --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p TresCrucesShopping -l 2 -i 3 -a C --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p TresCrucesShopping -l 2 -i 4 -a D --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p TresCrucesShopping -l 3 -i 1 -a A --device --qt-slots &
+python3 /opt/smart-parking/Python/Generator/Producer-Parkings-Kafka-Streaming_V3.py -p TresCrucesShopping -l 3 -i 2 -a B --device --qt-slots &
+

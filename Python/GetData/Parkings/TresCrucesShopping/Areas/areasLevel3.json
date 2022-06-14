@@ -4,15 +4,15 @@
       "area_id": "1",
       "area_name": "A",
       "area_description": "shot description",
-      "area_occupation": "Full",
-      "area_occupied_spots": "8",
+      "area_occupation": "Almost Empty",
+      "area_occupied_spots": "3",
       "area_total_spots": "10",
-      "area_available_spots": "2",
+      "area_available_spots": "7",
       "area_average_price": "200",
       "slots": [
         {
           "slot_id": "1",
-          "slot_state": true,
+          "slot_state": false,
           "slot_description": "1A",
           "slot_price": "200"
         },
@@ -42,13 +42,13 @@
         },
         {
           "slot_id": "6",
-          "slot_state": true,
+          "slot_state": false,
           "slot_description": "6A",
           "slot_price": "200"
         },
         {
           "slot_id": "7",
-          "slot_state": true,
+          "slot_state": false,
           "slot_description": "7A",
           "slot_price": "200"
         },
@@ -60,13 +60,13 @@
         },
         {
           "slot_id": "9",
-          "slot_state": true,
+          "slot_state": false,
           "slot_description": "9A",
           "slot_price": "200"
         },
         {
           "slot_id": "10",
-          "slot_state": true,
+          "slot_state": false,
           "slot_description": "10A",
           "slot_price": "200"
         }
@@ -90,7 +90,7 @@
         },
         {
           "slot_id": "2",
-          "slot_state": true,
+          "slot_state": false,
           "slot_description": "2B",
           "slot_price": "200"
         },
@@ -102,13 +102,13 @@
         },
         {
           "slot_id": "4",
-          "slot_state": true,
+          "slot_state": false,
           "slot_description": "4B",
           "slot_price": "200"
         },
         {
           "slot_id": "5",
-          "slot_state": false,
+          "slot_state": true,
           "slot_description": "5B",
           "slot_price": "200"
         },
@@ -120,7 +120,7 @@
         },
         {
           "slot_id": "7",
-          "slot_state": false,
+          "slot_state": true,
           "slot_description": "7B",
           "slot_price": "200"
         },
@@ -140,78 +140,6 @@
           "slot_id": "10",
           "slot_state": false,
           "slot_description": "10B",
-          "slot_price": "200"
-        }
-      ]
-    },
-    {
-      "area_id": "3",
-      "area_name": "C",
-      "area_description": "shot description",
-      "area_occupation": "Almost Empty",
-      "area_occupied_spots": "5",
-      "area_total_spots": "10",
-      "area_available_spots": "5",
-      "area_average_price": "200",
-      "slots": [
-        {
-          "slot_id": "1",
-          "slot_state": true,
-          "slot_description": "1C",
-          "slot_price": "200"
-        },
-        {
-          "slot_id": "2",
-          "slot_state": false,
-          "slot_description": "2C",
-          "slot_price": "200"
-        },
-        {
-          "slot_id": "3",
-          "slot_state": false,
-          "slot_description": "3C",
-          "slot_price": "200"
-        },
-        {
-          "slot_id": "4",
-          "slot_state": true,
-          "slot_description": "4C",
-          "slot_price": "200"
-        },
-        {
-          "slot_id": "5",
-          "slot_state": false,
-          "slot_description": "5C",
-          "slot_price": "200"
-        },
-        {
-          "slot_id": "6",
-          "slot_state": true,
-          "slot_description": "6C",
-          "slot_price": "200"
-        },
-        {
-          "slot_id": "7",
-          "slot_state": false,
-          "slot_description": "7C",
-          "slot_price": "200"
-        },
-        {
-          "slot_id": "8",
-          "slot_state": true,
-          "slot_description": "8C",
-          "slot_price": "200"
-        },
-        {
-          "slot_id": "9",
-          "slot_state": true,
-          "slot_description": "9C",
-          "slot_price": "200"
-        },
-        {
-          "slot_id": "10",
-          "slot_state": false,
-          "slot_description": "10C",
           "slot_price": "200"
         }
       ]
