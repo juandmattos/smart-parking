@@ -1,6 +1,6 @@
 import { FaCar, FaTruck, FaMotorcycle } from 'react-icons/fa'
 
-const MAKE_IT_REAL_TIME = false
+const MAKE_IT_REAL_TIME = true
 
 const EMPTY = 'Empty'
 const ALMOST_EMPTY = 'Almost Empty'
@@ -85,7 +85,6 @@ const occupationDiccionary = (occupation) => {
 }
 
 const getEstimatedOccupation = (levels, areaId, levelId) => {
-  console.log()
   const level = levels.find(l => l.level_id === levelId)
   if (!level){
     return -1

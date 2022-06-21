@@ -17,15 +17,40 @@ function About() {
           Creada por:
         </p>
         <div className={classes.wrapper}>
-          <div className={classes.boxName}>Pedro Bonillo</div>
+          <div className={classes.boxName}>
+            <a 
+              href='https://www.linkedin.com/in/pedrojesusbonillovalero-3933b4152/' 
+              target='_blank' 
+              rel='noreferrer'
+              style={{ textDecoration: 'none', cursor: 'pointer', color: 'white' }}
+            >
+              Pedro Bonillo
+            </a>
+          </div>
           <div className={classes.box}>265075</div>
           <div className={classes.box}>pedrobonillo15@gmail.com</div>
-
-          <div className={classes.boxName}>Jose Diaz</div>
+          <div className={classes.boxName}>
+            <a 
+              href='https://www.linkedin.com/in/jos%C3%A9-d%C3%ADaz-baraibar-74b7a1113/' 
+              target='_blank' 
+              rel='noreferrer'
+              style={{ textDecoration: 'none', cursor: 'pointer', color: 'white' }}
+            >
+              José Díaz
+            </a>
+          </div>
           <div className={classes.box}>230253</div>
           <div className={classes.box}>diazjose_80@hotmail.com</div>
-
-          <div className={classes.boxName}>Juan Diego Mattos</div>
+          <div className={classes.boxName}>
+            <a 
+              href='https://www.linkedin.com/in/juan-diego-mattos-a6664793/' 
+              target='_blank' 
+              rel='noreferrer'
+              style={{ textDecoration: 'none', cursor: 'pointer', color: 'white' }}
+            >
+              Juan Diego Mattos
+            </a>
+          </div>
           <div className={classes.box}>262316</div>
           <div className={classes.box}>juandmattos@gmail.com</div>
         </div>
