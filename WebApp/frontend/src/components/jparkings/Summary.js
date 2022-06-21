@@ -5,10 +5,11 @@ const Summary = () => {
     <section className={classes.summary}>
       <h2>Parking App</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis egestas libero sapien. Nam nisi turpis, pharetra eget porttitor vitae, molestie eget enim. Vestibulum a vehicula magna. Integer eget sem vel leo venenatis interdum eu et nunc.
+        Parking App es un proyecto con el objetivo de consumir datos de distintos parkings e informar en tiempo real el estado de cada lugar de estacionamiento de los parkings.
       </p>
+      <br />
       <p>
-        Morbi ac dapibus turpis, ac pretium felis. Duis pulvinar justo est. Nulla id tristique ante. Pellentesque gravida ligula dolor, non consequat sapien pellentesque laoreet.
+        A continuación se despliega la información de todos los estacionamientos en el sistema. Cada uno se puede desglozar en conceptos generales, lugares de estacionamiento, estado de los mismos y precio actual.
       </p>
     </section>
   )

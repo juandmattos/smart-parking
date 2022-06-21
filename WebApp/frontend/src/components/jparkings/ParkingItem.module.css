@@ -4,6 +4,7 @@
   margin: 1rem;
   padding: 1rem;
   border-bottom: 1px solid #ccc;
+  width: 90%;
 }
 
 .parking:hover {
@@ -21,6 +22,12 @@ h3 {
 
 .description {
   font-style: italic;
+}
+
+.timestamp {
+  font-style: italic;
+  font-size: 0.8rem;
+  text-align: right;
 }
 
 .spot {

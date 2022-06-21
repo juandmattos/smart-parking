@@ -2,16 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import classes from './SummaryParking.module.css'
 import LoadingSpinner from '../UI/LoadingSpinner'
+import SummaryArea from './SummaryArea'
 import { getIndividualParking } from '../../api/apiParking'
-import {
-  getOccupationDescription,
-  getWording,
-  MAKE_IT_REAL_TIME,
-  EMPTY,
-  ALMOST_EMPTY,
-  ALMOST_FULL,
-  FULL,
-} from '../../utils'
+import { MAKE_IT_REAL_TIME } from '../../utils'
 
 const SummaryParking = ({ parkingId }) => {
   const [parking, setParking] = useState([])
@@ -52,21 +45,6 @@ const SummaryParking = ({ parkingId }) => {
     // eslint-disable-next-line
   }, [])
 
-  const getClass = (occupation) => {
-    switch(occupation){
-      case EMPTY:
-        return classes.free
-      case ALMOST_EMPTY:
-        return classes.free  
-      case ALMOST_FULL:
-        return classes.mid  
-      case FULL:
-        return classes.used  
-      default:
-        return ''      
-    }
-  }
-
   if (error) {
     return (
       <section className={classes.container}>
@@ -97,8 +75,6 @@ const SummaryParking = ({ parkingId }) => {
     )
   }
 
-  console.log('PARKING', parking)
-
   return (
     <section className={classes.container}>
       <h1>{parking.parking_name}</h1>
@@ -128,41 +104,14 @@ const SummaryParking = ({ parkingId }) => {
           </h4>
           <div className={classes.flex}>
             {level.areas.map((area, ind) => (
-              <div className={`${classes.areaContainer} ${getClass(area.area_occupation)}`} key={ind}>
-                <div className={classes.info}>
-                  <span className={classes.levelArea}>
-                    <Link
-                      to={`/parkings/${parkingId}/${level.level_id}/${area['area_id']}`}
-                      style={{
-                        color: 'inherit',
-                        textDecoration: 'inherit'
-                      }}
-                    >
-                      <h2>Sector {area.area_name}</h2>
-                    </Link>
-                  </span>
-                  <div
-                  style={{
-                      display: 'flex',
-                      flexDirection: 'column'
-                    }}
-                  >
-                    <span className={classes.desc}>
-                      {getOccupationDescription(area.area_occupation)}
-                    </span>
-                    <span className={classes.averagePrice}>
-                      {`Precio Promedio: $${area.area_average_price}`}
-                    </span>
-                  </div>
-                </div>
-                <div className={classes.spotInfo}>
-                  <div>
-                    <span className={classes.price}>
-                      {getWording([area], false)}
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <SummaryArea
+                area={area}
+                key={ind}
+                level={level}
+                parkingId={parkingId}
+                ind={ind}
+                parkingSummary={parking.parking_summary}
+              />
             ))}
           </div>
         </div>

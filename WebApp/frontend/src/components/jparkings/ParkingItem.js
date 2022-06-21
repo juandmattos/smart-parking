@@ -4,12 +4,12 @@ import classes from './ParkingItem.module.css'
 
 const ParkingItem = (props) => (
   <li className={classes.parking}>
-    <div>
+    <div style={{ width: '100%' }}>
       {props.disabled ? (
         <h3 className={classes.disabled}>{props.name} - (Deshabilitado/Cerrado)</h3>
       ) : (
         <Link
-          to={`/parkings/${props.id}`}
+          to={`/parkings/summary/${props.id}`}
           style={{
             color: 'inherit',
             textDecoration: 'inherit'
@@ -35,16 +35,19 @@ const ParkingItem = (props) => (
         <div className={classes.info}>
           <br/>
           <Link
-            to={`/parkings/summary/${props.id}`}
+            to={`/parkings/${props.id}`}
             style={{
               color: 'inherit',
               textDecoration: 'inherit'
             }}
           >
-            <i className={classes.summaryLink}>{`Cambiar a Pantalla completa`}</i>
+            <i className={classes.summaryLink}>{`Ver info individual del parking`}</i>
           </Link>
         </div>
       )}
+      <div className={classes.timestamp}>
+        {`La última actualización fue: ${props.timestamp}`}
+      </div>
     </div>
   </li>
 )

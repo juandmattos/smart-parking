@@ -6,7 +6,7 @@ import classes from './AvailableParkings.module.css'
 import { getParkingJSON } from '../../api/apiParking'
 import { MAKE_IT_REAL_TIME } from '../../utils'
 
-const AvailableParkings = props => {
+const AvailableParkings = () => {
   const [parkings, setParkings] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -82,6 +82,7 @@ const AvailableParkings = props => {
       levels={parking.levels?.length || 0}
       levelList={parking.levels || []}
       disabled={parking.parking_closed}
+      timestamp={parking.parking_timestamp}
     />
   ))
 

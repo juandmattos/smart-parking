@@ -1,0 +1,911 @@
+{
+  "parking_id": "10",
+  "parking_name": "Nombre Parking Maqueta",
+  "parking_description": "Maqueta para cambios en el front",
+  "parking_address": "Dirección, 9999, Montevideo, 11300, Uruguay",
+  "parking_closed": false,
+  "parking_latitude": "-34.8943081",
+  "parking_longitude": "-56.1664375",
+  "parking_summary":{
+        "coefficients": {
+            "0to20Coef": "1.1",
+            "20to40Coef": "1.2",
+            "40to60Coef": "1.4",
+            "60to80Coef": "1.8",
+            "80to100Coef": "2"
+        },
+        "hasDynamicPrice": true,
+        "levels":[
+          {
+            "level_id": "1",
+            "areas": [
+              {
+                  "area_id": "1",
+                  "area_occupation_percentage_target": "15"
+              },
+              {
+                "area_id": "2",
+                "area_occupation_percentage_target": "20"
+              },
+              {
+                  "area_id": "3",
+                  "area_occupation_percentage_target": "30"
+              }
+            ]
+          },
+          {
+            "level_id": "2",
+            "areas": [
+              {
+                  "area_id": "1",
+                  "area_occupation_percentage_target": "15"
+              },
+              {
+                "area_id": "2",
+                "area_occupation_percentage_target": "20"
+              },
+              {
+                  "area_id": "3",
+                  "area_occupation_percentage_target": "30"
+              },
+              {
+                "area_id": "4",
+                "area_occupation_percentage_target": "60"
+              }            
+            ]
+          },
+          {
+            "level_id": "3",
+            "areas": [
+              {
+                "area_id": "1",
+                  "area_occupation_percentage_target": "15"
+              },
+              {
+                "area_id": "2",
+                "area_occupation_percentage_target": "80"
+              }
+            ]
+          }
+        ]
+  },
+  "levels": [
+    {
+      "level_id": "1",
+      "level_name": "Piso 1",
+      "level_average_price": "10.0",
+      "level_occupation": "Almost Empty",
+      "level_occupied_spots": "11",
+      "level_available_spots": "19",
+      "level_total_spots": "30",
+      "areas": [
+        {
+          "area_id": "1",
+          "area_name": "A",
+          "area_description": "orange|blue|purple|beige",
+          "area_color": "#3244a8",
+          "area_occupation": "Empty",
+          "area_occupation_percentage":"20",
+          "area_occupation_percentage_target":"20",
+          "area_occupied_spots": "1",
+          "area_total_spots": "10",
+          "area_available_spots": "9",
+          "area_average_price": "200",
+          "area_summary":{
+            "hasFreeHours": true,
+            "freeHourUntil": "2",
+            "hourFee": "10",
+            "monthFee": "200"
+          },
+          "slots": [
+            {
+              "slot_id": "1",
+              "slot_state": false,
+              "slot_description": "1A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "2",
+              "slot_state": false,
+              "slot_description": "2A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "3",
+              "slot_state": false,
+              "slot_description": "3A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "4",
+              "slot_state": false,
+              "slot_description": "4A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "5",
+              "slot_state": true,
+              "slot_description": "5A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "6",
+              "slot_state": false,
+              "slot_description": "6A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "7",
+              "slot_state": false,
+              "slot_description": "7A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "8",
+              "slot_state": false,
+              "slot_description": "8A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "9",
+              "slot_state": false,
+              "slot_description": "9A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "10",
+              "slot_state": false,
+              "slot_description": "10A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            }
+          ]
+        },
+        {
+          "area_id": "2",
+          "area_name": "B",
+          "area_description": "orange|blue|purple|beige",
+          "area_color": "#3244a8",
+          "area_occupation": "Almost Empty",
+          "area_occupied_spots": "4",
+          "area_total_spots": "10",
+          "area_available_spots": "6",
+          "area_average_price": "200",
+          "area_summary":{
+            "hasFreeHours": true,
+            "freeHourUntil": "2",
+            "hourFee": "10",
+            "monthFee": "200"
+          },
+          "slots": [
+            {
+              "slot_id": "1",
+              "slot_state": false,
+              "slot_description": "1B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "2",
+              "slot_state": false,
+              "slot_description": "2B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "3",
+              "slot_state": true,
+              "slot_description": "3B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "4",
+              "slot_state": true,
+              "slot_description": "4B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "5",
+              "slot_state": true,
+              "slot_description": "5B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "6",
+              "slot_state": false,
+              "slot_description": "6B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "7",
+              "slot_state": true,
+              "slot_description": "7B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "8",
+              "slot_state": false,
+              "slot_description": "8B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "9",
+              "slot_state": false,
+              "slot_description": "9B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "10",
+              "slot_state": false,
+              "slot_description": "10B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            }
+          ]
+        },
+        {
+          "area_id": "3",
+          "area_name": "C",
+          "area_description":  "orange|blue|purple|beige",
+          "area_color": "#3244a8",          
+          "area_occupation": "Almost Full",
+          "area_occupied_spots": "6",
+          "area_total_spots": "10",
+          "area_available_spots": "4",
+          "area_average_price": "200",
+          "area_summary":{
+            "hasFreeHours": true,
+            "freeHourUntil": "2",
+            "hourFee": "10",
+            "monthFee": "200"
+          },
+          "slots": [
+            {
+              "slot_id": "1",
+              "slot_state": false,
+              "slot_description": "1C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "2",
+              "slot_state": true,
+              "slot_description": "2C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "3",
+              "slot_state": true,
+              "slot_description": "3C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "4",
+              "slot_state": true,
+              "slot_description": "4C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "5",
+              "slot_state": true,
+              "slot_description": "5C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "6",
+              "slot_state": true,
+              "slot_description": "6C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "7",
+              "slot_state": false,
+              "slot_description": "7C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "8",
+              "slot_state": false,
+              "slot_description": "8C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "9",
+              "slot_state": true,
+              "slot_description": "9C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "10",
+              "slot_state": false,
+              "slot_description": "10C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level_id": "2",
+      "level_name": "Piso 2",
+      "level_average_price": "10.0",
+      "level_occupation": "Almost Full",
+      "level_occupied_spots": "22",
+      "level_available_spots": "18",
+      "level_total_spots": "40",
+      "areas": [
+        {
+          "area_id": "1",
+          "area_name": "A",
+          "area_description":  "orange|blue|purple|beige",
+          "area_color": "#3244a8",          
+          "area_occupation": "Almost Full",
+          "area_occupied_spots": "7",
+          "area_total_spots": "10",
+          "area_available_spots": "3",
+          "area_average_price": "200",
+          "area_summary":{
+            "hasFreeHours": true,
+            "freeHourUntil": "2",
+            "hourFee": "10",
+            "monthFee": "200"
+          },
+          "slots": [
+            {
+              "slot_id": "1",
+              "slot_state": true,
+              "slot_description": "1A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "2",
+              "slot_state": true,
+              "slot_description": "2A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "3",
+              "slot_state": false,
+              "slot_description": "3A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "4",
+              "slot_state": true,
+              "slot_description": "4A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "5",
+              "slot_state": false,
+              "slot_description": "5A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "6",
+              "slot_state": true,
+              "slot_description": "6A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "7",
+              "slot_state": true,
+              "slot_description": "7A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "8",
+              "slot_state": true,
+              "slot_description": "8A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "9",
+              "slot_state": true,
+              "slot_description": "9A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "10",
+              "slot_state": false,
+              "slot_description": "10A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            }
+          ]
+        },
+        {
+          "area_id": "2",
+          "area_name": "B",
+          "area_description": "orange|blue|purple|beige",
+          "area_color": "#3244a8",          
+          "area_occupation": "Almost Empty",
+          "area_occupied_spots": "5",
+          "area_total_spots": "10",
+          "area_available_spots": "5",
+          "area_average_price": "200",
+          "area_summary":{
+            "hasFreeHours": true,
+            "freeHourUntil": "2",
+            "hourFee": "10",
+            "monthFee": "200"
+          },
+          "slots": [
+            {
+              "slot_id": "1",
+              "slot_state": true,
+              "slot_description": "1B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "2",
+              "slot_state": false,
+              "slot_description": "2B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "3",
+              "slot_state": true,
+              "slot_description": "3B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "4",
+              "slot_state": true,
+              "slot_description": "4B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "5",
+              "slot_state": false,
+              "slot_description": "5B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "6",
+              "slot_state": true,
+              "slot_description": "6B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "7",
+              "slot_state": false,
+              "slot_description": "7B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "8",
+              "slot_state": false,
+              "slot_description": "8B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "9",
+              "slot_state": true,
+              "slot_description": "9B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "10",
+              "slot_state": false,
+              "slot_description": "10B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            }
+          ]
+        },
+        {
+          "area_id": "3",
+          "area_name": "C",
+          "area_description": "orange|blue|purple|beige",
+          "area_color": "#3244a8",          
+          "area_occupation": "Almost Full",
+          "area_occupied_spots": "7",
+          "area_total_spots": "10",
+          "area_available_spots": "3",
+          "area_average_price": "200",
+          "area_summary":{
+            "hasFreeHours": true,
+            "freeHourUntil": "2",
+            "hourFee": "10",
+            "monthFee": "200"
+          },
+          "slots": [
+            {
+              "slot_id": "1",
+              "slot_state": false,
+              "slot_description": "1C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "2",
+              "slot_state": true,
+              "slot_description": "2C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "3",
+              "slot_state": true,
+              "slot_description": "3C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "4",
+              "slot_state": true,
+              "slot_description": "4C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "5",
+              "slot_state": true,
+              "slot_description": "5C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "6",
+              "slot_state": false,
+              "slot_description": "6C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "7",
+              "slot_state": false,
+              "slot_description": "7C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "8",
+              "slot_state": true,
+              "slot_description": "8C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "9",
+              "slot_state": true,
+              "slot_description": "9C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "10",
+              "slot_state": true,
+              "slot_description": "10C",
+              "slot_price": "200",
+              "slot_type": "cars"
+            }
+          ]
+        },
+        {
+          "area_id": "4",
+          "area_name": "D",
+          "area_description": "orange|blue|purple|beige",
+          "area_color": "#cf852b",          
+          "area_occupation": "Almost Empty",
+          "area_occupied_spots": "3",
+          "area_total_spots": "10",
+          "area_available_spots": "7",
+          "area_average_price": "200",
+          "area_summary":{
+            "hasFreeHours": true,
+            "freeHourUntil": "2",
+            "hourFee": "10",
+            "monthFee": "200"
+          },
+          "slots": [
+            {
+              "slot_id": "1",
+              "slot_state": false,
+              "slot_description": "1D",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "2",
+              "slot_state": false,
+              "slot_description": "2D",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "3",
+              "slot_state": true,
+              "slot_description": "3D",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "4",
+              "slot_state": false,
+              "slot_description": "4D",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "5",
+              "slot_state": false,
+              "slot_description": "5D",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "6",
+              "slot_state": false,
+              "slot_description": "6D",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "7",
+              "slot_state": true,
+              "slot_description": "7D",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "8",
+              "slot_state": true,
+              "slot_description": "8D",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "9",
+              "slot_state": false,
+              "slot_description": "9D",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "10",
+              "slot_state": false,
+              "slot_description": "10D",
+              "slot_price": "200",
+              "slot_type": "cars"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "level_id": "3",
+      "level_name": "Piso 3",
+      "level_average_price": "10.0",
+      "level_occupation": "Almost Full",
+      "level_occupied_spots": "12",
+      "level_available_spots": "8",
+      "level_total_spots": "20",
+      "areas": [
+        {
+          "area_id": "1",
+          "area_name": "A",
+          "area_description": "orange|blue|purple|beige",
+          "area_color": "#9319bf",
+          "area_occupation": "Full",
+          "area_occupied_spots": "5",
+          "area_total_spots": "10",
+          "area_available_spots": "5",
+          "area_average_price": "200",
+          "area_summary":{
+            "hasFreeHours": true,
+            "freeHourUntil": "2",
+            "hourFee": "10",
+            "monthFee": "200"
+          },
+          "slots": [
+            {
+              "slot_id": "1",
+              "slot_state": true,
+              "slot_description": "1A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "2",
+              "slot_state": false,
+              "slot_description": "2A",
+              "slot_price": "200",
+              "slot_type": "trucks"
+            },
+            {
+              "slot_id": "3",
+              "slot_state": true,
+              "slot_description": "3A",
+              "slot_price": "200",
+              "slot_type": "motorcycles"
+            },
+            {
+              "slot_id": "4",
+              "slot_state": false,
+              "slot_description": "4A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "5",
+              "slot_state": true,
+              "slot_description": "5A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "6",
+              "slot_state": false,
+              "slot_description": "6A",
+              "slot_price": "200",
+              "slot_type": "trucks"
+            },
+            {
+              "slot_id": "7",
+              "slot_state": true,
+              "slot_description": "7A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "8",
+              "slot_state": false,
+              "slot_description": "8A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "9",
+              "slot_state": false,
+              "slot_description": "9A",
+              "slot_price": "200",
+              "slot_type": "motorcycles"
+            },
+            {
+              "slot_id": "10",
+              "slot_state": true,
+              "slot_description": "10A",
+              "slot_price": "200",
+              "slot_type": "cars"
+            }
+          ]
+        },
+        {
+          "area_id": "2",
+          "area_name": "B",
+          "area_description": "orange|blue|purple|beige",
+          "area_color": "#a67a5b",
+          "area_occupation": "Almost Full",
+          "area_occupied_spots": "7",
+          "area_total_spots": "10",
+          "area_available_spots": "3",
+          "area_average_price": "200",
+          "area_summary":{
+            "hasFreeHours": false,
+            "freeHourUntil": "2",
+            "hourFee": "10",
+            "monthFee": "200"
+          },
+          "slots": [
+            {
+              "slot_id": "1",
+              "slot_state": true,
+              "slot_description": "1B",
+              "slot_price": "200",
+              "slot_type": "trucks"
+            },
+            {
+              "slot_id": "2",
+              "slot_state": true,
+              "slot_description": "2B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "3",
+              "slot_state": false,
+              "slot_description": "3B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "4",
+              "slot_state": true,
+              "slot_description": "4B",
+              "slot_price": "200",
+              "slot_type": "motorcycles"
+            },
+            {
+              "slot_id": "5",
+              "slot_state": true,
+              "slot_description": "5B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "6",
+              "slot_state": false,
+              "slot_description": "6B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "7",
+              "slot_state": true,
+              "slot_description": "7B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            },
+            {
+              "slot_id": "8",
+              "slot_state": true,
+              "slot_description": "8B",
+              "slot_price": "200",
+              "slot_type": "trucks"
+            },
+            {
+              "slot_id": "9",
+              "slot_state": false,
+              "slot_description": "9B",
+              "slot_price": "200",
+              "slot_type": "motorcycles"
+            },
+            {
+              "slot_id": "10",
+              "slot_state": true,
+              "slot_description": "10B",
+              "slot_price": "200",
+              "slot_type": "cars"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "parking_timestamp": "16/06/2022, 16:37:10"
+}
