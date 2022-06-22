@@ -79,6 +79,7 @@ const SpotList = props => {
                   parkingId={props.parkingId}
                   levelId={props.levelId}
                   areaId={props.areaId}
+                  dynamicPrice={props.dynamicPrice}
                 />
               ))}
             </div>

@@ -46,7 +46,10 @@ const SummaryArea = ({ area, level, parkingId, ind, parkingSummary }) => {
       <div className={classes.info}>
         <span className={classes.levelArea}>
           <Link
-            to={`/parkings/${parkingId}/${level.level_id}/${area['area_id']}`}
+            to={{
+              pathname: `/parkings/${parkingId}/${level.level_id}/${area['area_id']}`,
+            }}
+            state={{dynamicPrice: getDynamicPrice(parkingSummary, area.area_summary, area.area_id, level.level_id)}}
             style={{
               color: 'inherit',
               textDecoration: 'inherit'
@@ -90,8 +93,7 @@ const SummaryArea = ({ area, level, parkingId, ind, parkingSummary }) => {
           </span>
           <br />
           <span className={classes.price}>
-            {/* TODO - Make DYNAMIC */}
-            {`Precio Promedio: $${getDynamicPrice(parkingSummary, area.area_summary, area.area_id, level.level_id)} la hora`}
+            {`Precio Sector: $${getDynamicPrice(parkingSummary, area.area_summary, area.area_id, level.level_id)} la hora`}
           </span>
         </div>
       </div>

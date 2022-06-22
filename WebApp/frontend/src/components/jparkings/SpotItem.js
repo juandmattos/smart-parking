@@ -2,7 +2,7 @@ import React from 'react'
 import { getIcon } from '../../utils'
 import classes from './SpotItem.module.css'
 
-const SpotItem = ({ spot }) => (
+const SpotItem = ({ spot, dynamicPrice }) => (
   <div
     className={`${classes.container} ${spot.slot_state ? classes.used : classes.free}`}
   >
@@ -23,7 +23,7 @@ const SpotItem = ({ spot }) => (
     <div className={classes.spotInfo}>
       <div>
         <span className={classes.price}>
-          Precio: ${spot.slot_price}
+          Precio: ${dynamicPrice || spot.slot_price} la hora
         </span>
       </div>
     </div>
