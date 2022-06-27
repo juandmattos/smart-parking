@@ -6,6 +6,9 @@
   "parking_closed": false,
   "parking_latitude": "-34.8943081",
   "parking_longitude": "-56.1664375",
+  "parking_holiday": false,
+  "parking_holiday_description": "Descripción del feriado",
+  "parking_weather": "sun | rain | clouds | storm",
   "parking_summary":{
         "coefficients": {
             "0to20Coef": "1.1",
@@ -85,8 +88,6 @@
           "area_description": "orange|blue|purple|beige",
           "area_color": "#3244a8",
           "area_occupation": "Empty",
-          "area_occupation_percentage":"20",
-          "area_occupation_percentage_target":"20",
           "area_occupied_spots": "1",
           "area_total_spots": "10",
           "area_available_spots": "9",
