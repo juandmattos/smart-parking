@@ -188,14 +188,14 @@ def main():
     while True:
         try:
             now = datetime.now()
-            print("NOW - " + str(now))
+            #print("NOW - " + str(now))
             
             with open(dirgeneral+parking+'/ActiveDevices/'+device+'.txt', 'r') as f:
                 status = f.readline()
             if status == '0\n':
                 break
-            print("Turno Inicial - "+Turno_inicio)
-            print("Turno Final - "+Turno_final)
+            #print("Turno Inicial - "+Turno_inicio)
+            #print("Turno Final - "+Turno_final)
             if now >= datetime.strptime(Turno_inicio, '%d/%m/%Y %H:%M:%S') and now <= datetime.strptime(Turno_final, '%d/%m/%Y %H:%M:%S'):
                 #auxTemp1 = auxTemp2 = auxTemp3 = auxTemp4 = auxTemp5 = 0
                 #status_slot1 = status_slot2 = status_slot3 = status_slot4 = status_slot5 = False
