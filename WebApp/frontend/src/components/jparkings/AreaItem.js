@@ -17,12 +17,12 @@ const AreaItem = ({ area, parkingId, levelId }) => {
               textDecoration: 'inherit'
             }}
           >
-            <h2>Sector {area.name}</h2>
+            <h2>Sector {area.area_name}</h2>
           </Link>
         </span>
         <div>
           <span className={classes.desc}>
-            {area.description}
+            {area.area_description}
           </span>
         </div>
       </div>

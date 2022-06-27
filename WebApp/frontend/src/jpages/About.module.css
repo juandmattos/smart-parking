@@ -20,6 +20,9 @@
 
 .about p {
   margin: 10px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .centered {
@@ -29,4 +32,23 @@
   justify-content: center;
   align-items: center;
   color: white;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 190px 100px 100px;
+  grid-gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.box {
+  padding: 10px;
+  font-size: 120%;
+}
+
+.boxName {
+  padding: 10px;
+  padding-left: 20px;
+  font-size: 110%;
+  text-align: left;
 }

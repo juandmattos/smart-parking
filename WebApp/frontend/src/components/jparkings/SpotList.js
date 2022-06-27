@@ -42,17 +42,31 @@ const SpotList = props => {
     <>
       <section className={classes.centered}>
         <h1>Lugares del Parking</h1>
-        <Link 
-          to={`/parkings/${props.parkingId}/${props.levelId}`}
-          style={{
-            color: 'inherit',
-            textDecoration: 'inherit'
-          }}
-        >        
-          <p className={classes.back}>
-            {`< Volver`}
-          </p>
-        </Link>
+        <div className={classes.linkContainer}>
+          <Link 
+            to={`/parkings/${props.parkingId}/${props.levelId}`}
+            style={{
+              color: 'inherit',
+              textDecoration: 'inherit',
+              marginRight: '2rem'
+            }}
+          >        
+            <p className={classes.back}>
+              {`< Volver`}
+            </p>
+          </Link>
+          <Link 
+            to={`/parkings/summary/${props.parkingId}`}
+            style={{
+              color: 'inherit',
+              textDecoration: 'inherit'
+            }}
+          >        
+            <p className={classes.back}>
+              {`< Volver a pantalla completa`}
+            </p>
+          </Link>
+        </div>
       </section>
       <section className={classes.spots}>
         <Card>
@@ -65,6 +79,7 @@ const SpotList = props => {
                   parkingId={props.parkingId}
                   levelId={props.levelId}
                   areaId={props.areaId}
+                  dynamicPrice={props.dynamicPrice}
                 />
               ))}
             </div>

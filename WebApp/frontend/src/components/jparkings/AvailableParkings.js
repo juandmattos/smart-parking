@@ -4,9 +4,10 @@ import LoadingSpinner from '../UI/LoadingSpinner'
 import ParkingItem from './ParkingItem'
 import classes from './AvailableParkings.module.css'
 import { getParkingJSON } from '../../api/apiParking'
+import { MAKE_IT_REAL_TIME } from '../../utils'
 
-const AvailableParkings = props => {
-  const [parkings, setParkings] = useState([]);
+const AvailableParkings = () => {
+  const [parkings, setParkings] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
 
@@ -17,11 +18,30 @@ const AvailableParkings = props => {
         setIsLoading(false)
         setParkings(response.data)
         setError(false)
-      } catch (error) {
+      } catch (err) {
         setError(true)
       }
     }
     fetch()
+  }, [])
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await getParkingJSON()
+        setIsLoading(false)
+        setParkings(response.data)
+        setError(false)
+      } catch (err) {
+        console.log(err)
+        setError(true)
+      }
+    }
+    if (MAKE_IT_REAL_TIME) {
+      const interval = setInterval(() => fetch(), 5000)
+      return () => clearInterval(interval)
+    }
+    // eslint-disable-next-line
   }, [])
 
 
@@ -57,12 +77,12 @@ const AvailableParkings = props => {
     <ParkingItem
       key={`${parking.parking_id}-${index}`}
       id={parking.parking_id}
-      name={parking.name}
-      description={parking.description}
-      spots={parking.spots}
+      name={parking.parking_name}
+      description={`${parking.parking_description} ${parking.parking_address}`}
       levels={parking.levels?.length || 0}
       levelList={parking.levels || []}
-      disabled={parking.disabled}
+      disabled={parking.parking_closed}
+      timestamp={parking.parking_timestamp}
     />
   ))
 

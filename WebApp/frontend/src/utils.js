@@ -1,26 +1,43 @@
+import { FaCar, FaTruck, FaMotorcycle } from 'react-icons/fa'
+
 const MAKE_IT_REAL_TIME = true
 
+const EMPTY = 'Empty'
+const ALMOST_EMPTY = 'Almost Empty'
+const ALMOST_FULL = 'Almost Full'
+const FULL = 'Full'
+
+const PARKING_API_CODE = 'parkings'
+
 const getOccupationDescription = (occ) => {
-  switch(occ){
-    case 'low':
+  switch(occ) {
+    case EMPTY:
       return 'Relativamente Libre'
-    case 'mid':
+    case ALMOST_EMPTY:
+      return 'Relativamente Libre'
+    case ALMOST_FULL:
       return 'Relativamente Ocupado' 
-    case 'high':
+    case FULL:
       return 'Muy Ocupado'
     default:
       return 'No hay información'       
   }
 }
 
+// state is false ==> Spot is Free
+// state is true  ==> Spot is Taken
 const getWording = (list, isLevel) => {
   let freeSpots = 0
   let allSpots = 0
-  if (isLevel) {
-    [freeSpots, allSpots] = getNumberOfSpots(list)
-  } else {
-    [freeSpots, allSpots] = getNumberOfSpotFromArea(list)
-  }
+  list.forEach(item => {
+    if (isLevel) {
+      allSpots = allSpots + parseInt(item.level_total_spots)
+      freeSpots = freeSpots + parseInt(item.level_available_spots)
+    } else {
+      allSpots = allSpots + parseInt(item.area_total_spots)
+      freeSpots = freeSpots + parseInt(item.area_available_spots)
+    }
+  })
   let wording = ''
 
   if (freeSpots === 1) {
@@ -31,42 +48,83 @@ const getWording = (list, isLevel) => {
   return wording
 }
 
-const getNumberOfSpots = (levels) => {
-  let freeSpaces = 0
-  let totalSpaces = 0
-
-  levels.forEach((level) => {
-    const spaces = getNumberOfSpotFromArea(level.areas)
-    freeSpaces = freeSpaces + spaces[0]
-    totalSpaces = totalSpaces + spaces[1]
-  })
-
-  return [freeSpaces, totalSpaces]
+const getIcon = (type) => {
+  switch(type) {
+    case 'cars':
+      return <FaCar size='20px' />
+    case 'trucks':
+      return <FaTruck size='20px' />
+    case 'motorcycles':
+      return <FaMotorcycle size='20px' />        
+    default:
+      return <FaCar size='20px' />
+  }
 }
 
-// state is false ==> Spot is Free
-// state is true  ==> Spot is Taken
-const getNumberOfSpotFromArea = (areas) => {
-  let freeSpaces = 0
-  let totalSpaces = 0
+const occupationDiccionary = (occupation) => {
+  switch (occupation) {
+    case 0:
+    case 1:
+      return '0to20Coef'
+    case 2:
+    case 3:
+      return '20to40Coef'
+    case 4:
+    case 5:
+      return '40to60Coef'
+    case 6:
+    case 7:
+      return '60to80Coef'
+    case 8:
+    case 9:
+    case 10:
+      return '80to100Coef'
+    default:
+      return '0to20Coef'
+  }
+}
 
-  areas.forEach((area) => {
-    area.slots.forEach((slot) => {
-      totalSpaces += 1
-      if (!slot.state) {
-        freeSpaces += 1
+const getEstimatedOccupation = (levels, areaId, levelId) => {
+  const level = levels.find(l => l.level_id === levelId)
+  if (!level){
+    return -1
+  } else {
+    const foundArea = level.areas.find(a => a.area_id === areaId)
+    if (!foundArea) {
+      return -1
+    } else {
+      return foundArea.area_occupation_percentage_target
+    }
+  }
+}
+
+const getDynamicPrice = (parkingSummary, aSummary, areaId, levelId) => {
+  if (!parkingSummary.hasDynamicPrice) {
+    return aSummary.hourFee
+  } else {
+    const estimatedOccupation = getEstimatedOccupation(parkingSummary.levels, areaId, levelId)
+    if (estimatedOccupation === -1) {
+      return aSummary.hourFee
+    } else {
+      const occupationKey = occupationDiccionary(Math.floor(estimatedOccupation/10))
+      const dynamicCoeff = parkingSummary.coefficients[occupationKey]
+      if (!dynamicCoeff) {
+        return aSummary.hourFee
       }
-    })
-  })
-
-  return [freeSpaces, totalSpaces]
+      return dynamicCoeff*aSummary.hourFee
+    }
+  }
 }
-
 
 export {
   getOccupationDescription,
-  getNumberOfSpotFromArea,
-  getNumberOfSpots,
   getWording,
-  MAKE_IT_REAL_TIME
+  getIcon,
+  getDynamicPrice,
+  MAKE_IT_REAL_TIME,
+  EMPTY,
+  ALMOST_EMPTY,
+  ALMOST_FULL,
+  FULL,
+  PARKING_API_CODE
 }
