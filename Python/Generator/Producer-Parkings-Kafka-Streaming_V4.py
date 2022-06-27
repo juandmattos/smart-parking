@@ -8,6 +8,7 @@ import sys
 import getopt
 import pyowm
 from kafka import KafkaProducer
+import holidays
 from datetime import datetime, timedelta
 
 # DIFERENTES RUTINAS DE ENTRADA Y DATOS NECESARIOS PARA SU USO
@@ -170,18 +171,40 @@ def main():
 
     # Obtener fecha de primera consulta para el tiempo
     APIKEY='055bcf46839359ea922b925c3d7cd860'        # your API Key here as string
+    #APIKEY='80237b0c490766db2b30a55e03099d4e'
     owm = pyowm.OWM(APIKEY)                       # Use API key to get data
     mgr = owm.weather_manager()
     weather = mgr.weather_at_place('Montevideo,UY').weather
     getTimeWeather = datetime.now() + timedelta(minutes=30)
     data['parking_temperature'] = weather.temperature(unit='celsius')['temp']
     data['parking_humidity'] = weather.humidity
-    data['device_timestamp'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    data['parking_weather_status'] = weather.status
+    data['parking_weather_status_detailed'] = weather.detailed_status
+    data['parking_wind_speed'] = weather.wind()['speed']
 
+    data['device_timestamp'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     # Initialize a Kafka Producer
     producer = KafkaProducer(bootstrap_servers=['hadoop-namenode:9092'], api_version=(0,10,0), value_serializer=lambda x: json.dumps(x).encode('utf-8'))
     topic = data['parking_name']
     print("El Topico a consumir es - "+topic)
+
+    #Get Holidays
+    dataHolidaysDict = holidays.Uruguay(years = [2022, 2023])
+    feriadosLaborales = []
+    feriadosNoLaborales = []
+    for day, descrip in dataHolidaysDict.items():
+        if ("01-01" in datetime.strftime(day, '%d-%m-%Y') or
+            "01-05" in datetime.strftime(day, '%d-%m-%Y') or
+            "18-07" in datetime.strftime(day, '%d-%m-%Y') or 
+            "25-12" in datetime.strftime(day, '%d-%m-%Y') or 
+            "25-08" in datetime.strftime(day, '%d-%m-%Y')):
+            
+            feriadosNoLaborales.append(day)
+            #print(day, descrip, "Feriado No Laborable")
+        else:
+            feriadosLaborales.append(day)
+            #print(day, descrip, "Feriado Laborable")
+    today = datetime.now()
 
 
     # LOOP PARA ENVIAR DATOS A KAFKA
@@ -189,7 +212,22 @@ def main():
         try:
             now = datetime.now()
             #print("NOW - " + str(now))
-            
+            if today.day == now.day:
+                auxDate = datetime(now.year, now.month, now.day)
+                if auxDate in feriadosLaborales:
+                    data['parking_holiday_status'] = True
+                    data['parking_holiday_description'] = dataHolidaysDict[auxDate]
+                    data['parking_holiday_type'] = "L"
+                elif auxDate in feriadosNoLaborales:
+                    data['parking_holiday_status'] = True
+                    data['parking_holiday_description'] = dataHolidaysDict[auxDate]
+                    data['parking_holiday_type'] = "NL"
+                else:
+                    data['parking_holiday_status'] = False
+                    data['parking_holiday_description'] = None
+                    data['parking_holiday_type'] = "L"
+                today = today + timedelta(days=1)
+
             with open(dirgeneral+parking+'/ActiveDevices/'+device+'.txt', 'r') as f:
                 status = f.readline()
             if status == '0\n':
@@ -221,10 +259,18 @@ def main():
                     weather = mgr.weather_at_place('Montevideo,UY').weather
                     data['parking_temperature'] = weather.temperature(unit='celsius')['temp']
                     data['parking_humidity'] = weather.humidity
+                    data['parking_weather_status'] = weather.status
+                    data['parking_weather_status_detailed'] = weather.detailed_status
+                    data['parking_wind_speed'] = weather.wind()['speed']
+
                     getTimeWeather = now + timedelta(minutes=30)
                 else:
                     data['parking_temperature'] = weather.temperature(unit='celsius')['temp']
                     data['parking_humidity'] = weather.humidity
+                    data['parking_weather_status'] = weather.status
+                    data['parking_weather_status_detailed'] = weather.detailed_status
+                    data['parking_wind_speed'] = weather.wind()['speed']
+
 
             data['device_timestamp'] = now.strftime('%Y-%m-%d %H:%M:%S')
             data['device_slots'] = []
