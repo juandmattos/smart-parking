@@ -1,6 +1,7 @@
 import requests
 import json
 import time
+from datetime import datetime, timedelta
 import getopt
 import sys
 
@@ -49,6 +50,10 @@ def main():
             try:
                 with open(dirGenral+parking+"/"+parking+"Data.json", 'r') as f:
                     row = json.load(f)
+                # parking_timestamp = datetime.strptime(row['parking_timestamp'], "%d/%m/%Y|%H:%M:%S")
+                # parking_timestamp_start_closed = datetime(parking_timestamp.year, parking_timestamp.month, parking_timestamp.day, 22, 00)
+                # parking_timestamp_end_closed = datetime(parking_timestamp.year, parking_timestamp.month, parking_timestamp.day, 8, 00) + timedelta(days=1) 
+                # if parking_timestamp
                 response = requests.post('https://smart-parking-ort-db.herokuapp.com/api/v1/parkings/'+row["parking_id"], json=row)
                 #print(response)
             except Exception as e:

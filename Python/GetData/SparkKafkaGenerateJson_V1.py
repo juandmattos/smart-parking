@@ -52,6 +52,10 @@ def usage():
     --parking (-p)\t\tParking Name (Mandatory)
     """)
 
+def percentageOcuppation(sp_total, sp_ocupied):
+    percnt = int((sp_ocupied*100)/sp_total)
+    return percnt
+
 def percentagetoString(sp_total, sp_ocupied):
     percnt = int((sp_ocupied*100)/sp_total)
     #print(percnt)
@@ -84,6 +88,7 @@ class ForeachWriter:
                 occu += 1
             row['slotsUpdated'].append((str(i+1), row["device_slots"][i]))
         row['area_occupation'] = percentagetoString(int(totalSpots), occu)
+        row['area_occupation_percentage'] = percentageOcuppation(int(totalSpots), occu)
         
         row['area_available_spots'] = str(int(totalSpots) - occu)
         row['area_occupied_spots'] = str(occu)
@@ -92,7 +97,22 @@ class ForeachWriter:
         areaInfo.update(area_id=row['device_area_id'],area_name=row['device_area_name'],area_description="shot description",
                         area_occupation=row['area_occupation'], area_occupied_spots=row['area_occupied_spots'],
                         area_total_spots=row['area_total_spots'], area_available_spots=row['area_available_spots']) 
-        
+        #device area_color
+        if row['device_area_name'] == "A":
+            areaInfo.update(area_color="#3244a8", area_description="blue")
+        elif row['device_area_name'] == "B":
+            areaInfo.update(area_color="#cf852b", area_description="orange")
+        elif row['device_area_name'] == "C":
+            areaInfo.update(area_color="#9319bf", area_description="purple")
+        elif row['device_area_name'] == "D":
+            areaInfo.update(area_color="#a67a5b", area_description="Light Brown")
+        else:
+            areaInfo.update(area_color="#ffffff", area_description="black")
+
+        with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'/area_summary.json', 'r') as f:
+            dictAreaSummary = json.load(f)
+
+        areaInfo.update(area_summary=dictAreaSummary)
         slotsInfo = []
         area_price = 0
         for slot in row['slotsUpdated']:
@@ -101,6 +121,7 @@ class ForeachWriter:
             SLTINFO['slot_state'] = slot[1]
             SLTINFO['slot_description'] = slot[0]+row['device_area_name'].upper()
             SLTINFO['slot_price'] = "200"
+            SLTINFO['slot_type'] = "cars"
             #POSIBLE INTEGRACION
             # if slot[1]:
             #     SLTINFO['slot_price'] = "200"
@@ -121,7 +142,7 @@ class ForeachWriter:
                 JsonAreas['areas'][i] = areaInfo
                     
         with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'/Areas/areasLevel'+row['device_level_id']+'.json', 'w') as f:
-            f.write(json.dumps(JsonAreas, indent = 2))
+            f.write(json.dumps(JsonAreas))
         
         ## LEVELS DATA
         levelInfo = {}
@@ -141,8 +162,9 @@ class ForeachWriter:
         # TO DO
         levelInfo['level_average_price'] = str(sumaTotalLevelSlots / len(JsonAreas['areas']))
         levelInfo.update(level_occupation=percentagetoString(sumaTotalLevelSlots, sumaOccuLevelSlots), level_occupied_spots=sumaOccuLevelSlots,
-                        level_available_spots= str(sumaAvailableLevelSlots),level_total_spots=str(sumaTotalLevelSlots), areas=JsonAreas['areas'])
-        
+            level_available_spots= str(sumaAvailableLevelSlots),level_total_spots=str(sumaTotalLevelSlots),
+            level_occupation_percentage=percentageOcuppation(sumaTotalLevelSlots, sumaOccuLevelSlots), areas=JsonAreas['areas'])
+
         #levelInfo.update(level_occupation=percentagetoString(sumaTotalLevelSlots, sumaOccuLevelSlots), level_occupied_slots=sumaOccuLevelSlots,
         #                level_total_slots=sumaTotalLevelSlots, areas=JsonAreas['areas'])
         
@@ -154,32 +176,33 @@ class ForeachWriter:
                 JsonLevels['levels'][i] = levelInfo
                     
         with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'/'+row["parking_name"]+'Levels.json', 'w') as f:
-            f.write(json.dumps(JsonLevels, indent = 2))
+            f.write(json.dumps(JsonLevels))
         
         parkingInfo = {"parking_id": row["parking_id"]}
         parkingInfo.update(parking_name=row['parking_name'], parking_description=row['parking_description'],
-                        parking_address=row['parking_address'], parking_closed=False, parking_latitude=str(row['parking_latitude']),
-                        parking_longitude=str(row['parking_longitude']), levels=JsonLevels['levels'])
-        parkingInfo['parking_timestamp'] = datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
+            parking_address=row['parking_address'], parking_closed=False, parking_latitude=str(row['parking_latitude']),
+            parking_longitude=str(row['parking_longitude']), parking_weather_status=row['parking_weather_status'],
+            parking_weather_status_detailed=row['parking_weather_status_detailed'], parking_wind_speed=row['parking_wind_speed'],
+            parking_holiday_status=row['parking_holiday_status'], parking_holiday_description=row['parking_holiday_description'],
+            parking_holiday_type=row['parking_holiday_type'])
+        parkingInfo['parking_timestamp'] = datetime.now().strftime("%d/%m/%Y|%H:%M:%S")
         
-        # print(datetime.strptime(datetime.now(), "%Y-%m-%d %H:%M"))
-        #producer.send("Parkings", value=json.dumps(parkingInfo).encode('utf-8'))
-        #producer.close()
-        
-        # r = requests.post('https://smart-parking-ort-db.herokuapp.com/api/v1/parkings/'+row["parking_id"], json=parkingInfo)
-        #r.close()
 
-        #print(parkingInfo['parking_timestamp'])
+        with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'/MachineLearning/ParkingSummary.json', 'r') as f:
+            parking_summary = json.load(f)  
+        
+        parkingInfo['parking_summary'] = parking_summary
+        
+        parkingInfo.update(levels=JsonLevels['levels'])
+
         with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'/'+row["parking_name"]+'Data.json', 'w') as f:
-            f.write(json.dumps(parkingInfo, indent = 2))
+            f.write(json.dumps(parkingInfo))
         
-
-
         return True
         
     def close(self, error):
         # Close the connection. This method in optional in Python.
-        print(error)
+        #print(error)
         pass
 
 def main():
@@ -223,11 +246,11 @@ def main():
         #cargado de config para los levels...
         levels = [{"level_id": str(i+1)} for i in range(int(baseConfigJson['levels']))]
         with open(dirGeneral+parking+"/"+parking+"Levels.json", "w") as f:
-            f.write(json.dumps({"levels": levels}, indent = 2))
+            f.write(json.dumps({"levels": levels}))
             
         for i in range(len(baseConfigJson["areas"])):
             with open(dirGeneral+parking+"/Areas/areasLevel"+str(i+1)+".json", "w") as f:
-                f.write(json.dumps({'areas':baseConfigJson["areas"][i]['areas_level_'+str(i+1)]}, indent = 4))
+                f.write(json.dumps({'areas':baseConfigJson["areas"][i]['areas_level_'+str(i+1)]}))
         
         df \
         .writeStream \

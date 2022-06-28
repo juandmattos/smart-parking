@@ -1,0 +1,7 @@
+{
+    "hasFreeHours": true,
+    "freeHourUntil": "2",
+    "hourFee": "80",
+    "dayFee": "300",
+    "monthFee": "2000"
+}
