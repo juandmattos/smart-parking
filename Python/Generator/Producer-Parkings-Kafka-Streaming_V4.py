@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
+import argparse
 import random
 import json
 import time
@@ -27,6 +28,62 @@ def getAvailabledevices(devices):
         line = devices[i-1]+"\n"
         print(str(i)+".- "+line)
 
+
+def get_args():
+    global dirgeneral
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "-p",
+        "--parking",
+        help="Parking Name",
+        choices=["PuntaCarretasShopping", "TresCrucesShopping"],
+        required=True,
+    )
+
+    parser.add_argument(
+        "-l",
+        "--level-id",
+        help="Parking Level-ID",
+        dest="level_id",
+        required=True,
+    )
+
+    parser.add_argument(
+        "-ai",
+        "--area-id",
+        help="Parking Area-ID",
+        dest="area_id",
+        required=True,
+    )
+
+    parser.add_argument(
+        "-an",
+        "--area-name",
+        help="Parking Area-Name",
+        dest="area_name",
+        required=True,
+    )
+
+    parser.add_argument(
+        "-d",
+        "--device",
+        help="Device Name",
+        dest="device",
+        required=True,
+    )
+
+    parser.add_argument(
+        "-q",
+        "--qt-slots",
+        help="Quantity of Slots on the Area",
+        dest="qt_slots",
+        required=True,
+    )
+
+    return parser.parse_args()
+
+"""
 def getParameters(argv):
     global dirgeneral
     try:
@@ -127,7 +184,7 @@ def getParameters(argv):
     return parking, device, qt_slots, level_id, area_id, area_name
 
 def usage():
-    print("""
+    print(
     Opciones:
     --help (-h)\t\tAvailable options
     --parking (-p)\t\tParking Name (Mandatory)
@@ -136,21 +193,62 @@ def usage():
     --level-id (-l)\t\tLevel ID (Mandatory)
     --area-id (-i)\t\tArea ID of the Level (Mandatory)
     --area-name (-a)\t\tArea Name of the Level (Mandatory)
-    """)
+"""
 
 def main():
     print("""
-
     Bienvenido al Tercer Script del Proyecto SmartParkingSystem,
     este script esta diseñado para la ejecución de un dispositivo virtual
     dentro de la red de estacionamientos en el sistema de BigData\n\n""")
 
-    parking, device, num_puestos, nivel, area, areaName = getParameters(sys.argv[1:])
-    #device = list_device[0]
-    num_puestos = int(num_puestos)
+    # parking, device, num_puestos, nivel, area, areaName = getParameters(sys.argv[1:])
+    # device = list_device[0]
+    args = get_args()
+    print(args)
+    parking = args.parking
+    num_puestos = int(args.qt_slots)
+    device = args.device
+    area = args.area_id
+    areaName = args.area_name
+    nivel = args.level_id
+
     # FORMAT A JSON MODEL FOR PARKING
     with open(dirgeneral+parking+'/producer'+parking+'.json') as f:
         data = json.load(f)
+
+    # DEVICES OPTION
+    with open(dirgeneral+parking+'/'+parking+'Devices.txt', 'r') as f:
+        devices = f.readlines()
+    device = random.choice(devices) if device == "" else device
+    try:
+        device = device.replace("\n", "")   
+    except Exception as e:
+        print(e)
+    devices = [k.replace("\n","") for k in devices]
+    if device not in devices:
+        print("The device is not in the Parking Devices List... Please, Try Again!!")
+        #getAvailabledevices(devices)
+        sys.exit()
+    
+    if len(device) != 16:
+        print("The device should have 16 length... Please, Try Again!!")
+        #getAvailabledevices(devices)
+        sys.exit()
+
+    devices.remove(device)
+    with open(dirgeneral+parking+'/ActiveDevices/'+device+'.txt', 'w') as f:
+        f.write("1\n")
+
+    try:
+        with open(dirgeneral+parking+'/AllActiveDevices.txt', 'a+') as f:
+            f.write(device+"\n")
+    except:
+        with open(dirgeneral+parking+'/AllActiveDevices.txt', 'w+') as f:
+            f.write(device)
+            
+    devices = [k+"\n" for k in devices]
+    with open(dirgeneral+parking+'/'+parking+'Devices.txt', 'w') as f:
+        f.writelines(devices)
 
     data['device_id'] = device
     data['device_spots'] = str(num_puestos)
@@ -303,7 +401,6 @@ def main():
                 f.writelines(dev2)
                 f.write("\n")
             break
-
     
 if __name__ == '__main__':
     main()
