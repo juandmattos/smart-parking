@@ -82,6 +82,8 @@ const AvailableParkings = () => {
       levels={parking.levels?.length || 0}
       levelList={parking.levels || []}
       disabled={parking.parking_closed}
+      isHoliday={parking.parking_holiday_status}
+      holidayType={parking.parking_holiday_type}
       timestamp={parking.parking_timestamp}
     />
   ))

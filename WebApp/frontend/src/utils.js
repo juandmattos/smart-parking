@@ -9,6 +9,8 @@ const FULL = 'Full'
 
 const PARKING_API_CODE = 'parkings'
 
+const OCCUPATION_TOLERANCE = 30;
+
 const getOccupationDescription = (occ) => {
   switch(occ) {
     case EMPTY:
@@ -98,7 +100,7 @@ const getEstimatedOccupation = (levels, areaId, levelId) => {
   }
 }
 
-const getDynamicPrice = (parkingSummary, aSummary, areaId, levelId) => {
+const getDynamicPrice = (parkingSummary, aSummary, areaId, levelId, areaOccupationLive) => {
   if (!parkingSummary.hasDynamicPrice) {
     return aSummary.hourFee
   } else {
@@ -106,7 +108,13 @@ const getDynamicPrice = (parkingSummary, aSummary, areaId, levelId) => {
     if (estimatedOccupation === -1) {
       return aSummary.hourFee
     } else {
-      const occupationKey = occupationDiccionary(Math.floor(estimatedOccupation/10))
+      const toleranceDiff = Math.abs(+estimatedOccupation - +areaOccupationLive)
+      let occupationKey = 0
+      if (toleranceDiff <= OCCUPATION_TOLERANCE) {
+        occupationKey = occupationDiccionary(Math.floor(estimatedOccupation/10))
+      } else {
+        occupationKey = occupationDiccionary(Math.floor(areaOccupationLive/10))
+      }
       const dynamicCoeff = parkingSummary.coefficients[occupationKey]
       if (!dynamicCoeff) {
         return aSummary.hourFee
@@ -116,11 +124,19 @@ const getDynamicPrice = (parkingSummary, aSummary, areaId, levelId) => {
   }
 }
 
+const isLabor = (holidayType) => {
+  if (holidayType === 'L') {
+    return 'Laborable'
+  }
+  return 'No Laborable'
+}
+
 export {
   getOccupationDescription,
   getWording,
   getIcon,
   getDynamicPrice,
+  isLabor,
   MAKE_IT_REAL_TIME,
   EMPTY,
   ALMOST_EMPTY,

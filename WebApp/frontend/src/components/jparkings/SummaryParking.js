@@ -111,6 +111,9 @@ const SummaryParking = ({ parkingId }) => {
                 parkingId={parkingId}
                 ind={ind}
                 parkingSummary={parking.parking_summary}
+                parkingDisabled={parking.parking_closed}
+                parkingIsHoliday={parking.parking_holiday_status}
+                parkingHolidayType={parking.parking_holiday_type}
               />
             ))}
           </div>

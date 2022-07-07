@@ -7,6 +7,7 @@ import {
   getOccupationDescription,
   getDynamicPrice,
   getWording,
+  isLabor,
   EMPTY,
   ALMOST_EMPTY,
   ALMOST_FULL,
@@ -28,7 +29,7 @@ const getClass = (occupation) => {
   }
 }
 
-const areaSummary = (hasFreeHours, freeHourUntil, monthFee) => (
+const areaSummary = (hasFreeHours, freeHourUntil, monthFee, isHoliday, holidayType) => (
   <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
     <div>
       Horas Gratis: {hasFreeHours ? freeHourUntil : 'No tiene'}
@@ -36,27 +37,35 @@ const areaSummary = (hasFreeHours, freeHourUntil, monthFee) => (
     <div>
       Precio por Mes: ${monthFee}
     </div>
-    <div></div>
+    {isHoliday ? (
+      <div>
+        {`Al ser feriado ${isLabor(holidayType)}, los precios pueden variar`}
+      </div>
+    ) : null}
   </div>
 )
 
-const SummaryArea = ({ area, level, parkingId, ind, parkingSummary }) => {
+const SummaryArea = ({ area, level, parkingId, ind, parkingSummary, parkingDisabled, parkingIsHoliday, parkingHolidayType }) => {
   return (
     <div className={`${classes.areaContainer} ${getClass(area.area_occupation)}`}>
       <div className={classes.info}>
         <span className={classes.levelArea}>
-          <Link
-            to={{
-              pathname: `/parkings/${parkingId}/${level.level_id}/${area['area_id']}`,
-            }}
-            state={{dynamicPrice: getDynamicPrice(parkingSummary, area.area_summary, area.area_id, level.level_id)}}
-            style={{
-              color: 'inherit',
-              textDecoration: 'inherit'
-            }}
-          >
-            <h2>Sector {area.area_name}</h2>
-          </Link>
+          {parkingDisabled ? (
+            <p className={classes.disabled}>Sector {area.area_name} - (Deshabilitado/Cerrado)</p>
+          ) : (
+            <Link
+              to={{
+                pathname: `/parkings/${parkingId}/${level.level_id}/${area['area_id']}`,
+              }}
+              state={{dynamicPrice: getDynamicPrice(parkingSummary, area.area_summary, area.area_id, level.level_id, area.area_occupation_percentage)}}
+              style={{
+                color: 'inherit',
+                textDecoration: 'inherit'
+              }}
+            >
+              <h2>Sector {area.area_name}</h2>
+            </Link>
+          )}
         </span>
         <div
         style={{
@@ -81,7 +90,7 @@ const SummaryArea = ({ area, level, parkingId, ind, parkingSummary }) => {
               <FaInfoCircle size='12px' />
             </p>
             <ReactTooltip id={`info-${area.area_id}-${ind}`}>
-              {areaSummary(area.area_summary.hasFreeHours, area.area_summary.freeHourUntil, area.area_summary.monthFee)}
+              {areaSummary(area.area_summary.hasFreeHours, area.area_summary.freeHourUntil, area.area_summary.monthFee, parkingIsHoliday, parkingHolidayType)}
             </ReactTooltip>
           </span>
         </div>
@@ -93,7 +102,7 @@ const SummaryArea = ({ area, level, parkingId, ind, parkingSummary }) => {
           </span>
           <br />
           <span className={classes.price}>
-            {`Precio Sector: $${getDynamicPrice(parkingSummary, area.area_summary, area.area_id, level.level_id)} la hora`}
+            {`Precio Sector: $${getDynamicPrice(parkingSummary, area.area_summary, area.area_id, level.level_id, area.area_occupation_percentage)} la hora`}
           </span>
         </div>
       </div>
