@@ -9,7 +9,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 from pyspark.sql.functions import *
 
-dirGeneral = "/opt/smart-parking/Python/GetData/Parkings/"
+dirGeneral = "/opt/data/GetData/Parkings/"
 
 findspark.init(spark_home='/opt/spark')
 
@@ -106,7 +106,7 @@ class ForeachWriter:
         else:
             areaInfo.update(area_color="#ffffff", area_description="black")
 
-        with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'/area_summary.json', 'r') as f:
+        with open("/opt/data/GetData/Parkings/"+row["parking_name"]+'/area_summary.json', 'r') as f:
             dictAreaSummary = json.load(f)
 
         areaInfo.update(area_summary=dictAreaSummary)
@@ -136,14 +136,14 @@ class ForeachWriter:
         areaInfo.update(slots=slotsInfo)
     
         # AREAS DATA
-        with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'/Areas/areasLevel'+row['device_level_id']+'.json', 'r') as f:
+        with open("/opt/data/GetData/Parkings/"+row["parking_name"]+'/Areas/areasLevel'+row['device_level_id']+'.json', 'r') as f:
             JsonAreas = json.load(f)  
 
         for i in range(len(JsonAreas['areas'])):
             if str(areaInfo['area_id']) == JsonAreas['areas'][i]['area_id'] and str(areaInfo['area_name']) == JsonAreas['areas'][i]['area_name']:
                 JsonAreas['areas'][i] = areaInfo
                     
-        with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'/Areas/areasLevel'+row['device_level_id']+'.json', 'w') as f:
+        with open("/opt/data/GetData/Parkings/"+row["parking_name"]+'/Areas/areasLevel'+row['device_level_id']+'.json', 'w') as f:
             f.write(json.dumps(JsonAreas))
         
         ## LEVELS DATA
@@ -170,14 +170,14 @@ class ForeachWriter:
         #levelInfo.update(level_occupation=percentagetoString(sumaTotalLevelSlots, sumaOccuLevelSlots), level_occupied_slots=sumaOccuLevelSlots,
         #                level_total_slots=sumaTotalLevelSlots, areas=JsonAreas['areas'])
         
-        with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'/'+row["parking_name"]+'Levels.json', 'r') as f:
+        with open("/opt/data/GetData/Parkings/"+row["parking_name"]+'/'+row["parking_name"]+'Levels.json', 'r') as f:
             JsonLevels = json.load(f)  
         #print(JsonLevels)
         for i in range(len(JsonLevels['levels'])):
             if str(levelInfo['level_id']) == JsonLevels['levels'][i]['level_id']:
                 JsonLevels['levels'][i] = levelInfo
                     
-        with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'/'+row["parking_name"]+'Levels.json', 'w') as f:
+        with open("/opt/data/GetData/Parkings/"+row["parking_name"]+'/'+row["parking_name"]+'Levels.json', 'w') as f:
             f.write(json.dumps(JsonLevels))
         
         parkingInfo = {"parking_id": row["parking_id"]}
@@ -198,14 +198,14 @@ class ForeachWriter:
         parkingInfo['parking_timestamp'] = datetime.now().strftime("%d/%m/%Y|%H:%M:%S")
         
 
-        with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'/MachineLearning/ParkingSummary.json', 'r') as f:
+        with open("/opt/data/GetData/Parkings/"+row["parking_name"]+'/MachineLearning/ParkingSummary.json', 'r') as f:
             parking_summary = json.load(f)  
         
         parkingInfo['parking_summary'] = parking_summary
         
         parkingInfo.update(levels=JsonLevels['levels'])
 
-        with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'/'+row["parking_name"]+'Data.json', 'w') as f:
+        with open("/opt/data/GetData/Parkings/"+row["parking_name"]+'/'+row["parking_name"]+'Data.json', 'w') as f:
             f.write(json.dumps(parkingInfo))
         
         return True
@@ -217,15 +217,15 @@ class ForeachWriter:
 
 def main():
     parking = getParameters(sys.argv[1:])
-    
+    spark_dir_utils = "/opt/smart-parking/Python/Spark-Jars-Utils/"
     spark = (SparkSession
             .builder
             .master('local[1]')
             .appName(parking+"ToBackend")
-            .config('spark.jars', 'file:///opt/smart-parking/Python/Spark-Jars-Utils/spark-sql-kafka-0-10_2.12-3.2.1.jar,file:///opt/smart-parking/Python/Spark-Jars-Utils/kafka-clients-3.1.0.jar')
-            .config('spark.executor.extraClassPath','file:///opt/smart-parking/Python/Spark-Jars-Utils/spark-sql-kafka-0-10_2.12-3.2.1.jar:file:///opt/smart-parking/Python/Spark-Jars-Utils/kafka-clients-3.1.0.jar')
-            .config('spark.executor.extraLibrary','file:///opt/smart-parking/Python/Spark-Jars-Utils/spark-sql-kafka-0-10_2.12-3.2.1.jar:file:///opt/smart-parking/Python/Spark-Jars-Utils/kafka-clients-3.1.0.jar')
-            .config('spark.driver.extraClassPath', 'file:///opt/smart-parking/Python/Spark-Jars-Utils/spark-sql-kafka-0-10_2.12-3.2.1.jar:file:///opt/smart-parking/Python/Spark-Jars-Utils/kafka-clients-3.1.0.jar')
+            .config('spark.jars', 'file://'+spark_dir_utils+'spark-sql-kafka-0-10_2.12-3.2.1.jar,file://'+spark_dir_utils+'kafka-clients-3.1.0.jar')
+            .config('spark.executor.extraClassPath','file://'+spark_dir_utils+'spark-sql-kafka-0-10_2.12-3.2.1.jar:file://'+spark_dir_utils+'kafka-clients-3.1.0.jar')
+            .config('spark.executor.extraLibrary','file://'+spark_dir_utils+'spark-sql-kafka-0-10_2.12-3.2.1.jar:file://'+spark_dir_utils+'kafka-clients-3.1.0.jar')
+            .config('spark.driver.extraClassPath', 'file://'+spark_dir_utils+'spark-sql-kafka-0-10_2.12-3.2.1.jar:file://'+spark_dir_utils+'kafka-clients-3.1.0.jar')
             .getOrCreate())
 
     sc = spark.sparkContext

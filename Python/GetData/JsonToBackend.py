@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import getopt
 import sys
 
-dirGenral = '/opt/smart-parking/Python/GetData/Parkings/'
+dirGenral = '/opt/data/GetData/Parkings/'
 
 def getParameters(argv):
     global dirGeneral

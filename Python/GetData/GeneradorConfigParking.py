@@ -3,14 +3,12 @@ import shutil
 import subprocess
 import json 
 import sys
+from kafka import KafkaConsumer
 
-dirGeneral = "/opt/smart-parking/Python/GetData/Parkings/"
+dirGeneral = "/opt/data/GetData/Parkings/"
 
-topics = subprocess.check_output("/opt/kafka/bin/kafka-topics.sh --list --bootstrap-server hadoop-namenode:9092", shell=True)
-topics = topics.split()
-topics = [ topic.decode("UTF-8") for topic in topics ]
-topics.pop()
-topics
+consumer = KafkaConsumer(bootstrap_servers=['hadoop-namenode'])
+topics = list(consumer.topics())
 
 op = 0
 while True:
