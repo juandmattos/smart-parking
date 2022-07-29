@@ -3,11 +3,15 @@ import findspark
 import os
 import sys
 import json
+import time
 import getopt
+import requests
 from datetime import datetime
-from pyspark.sql import SparkSession
+from kafka import KafkaProducer
+from pyspark.sql import SparkSession, Row
 from pyspark.sql.types import *
 from pyspark.sql.functions import *
+from pyspark.sql.window import Window
 
 dirGeneral = "/opt/smart-parking/Python/GetData/Parkings/"
 
@@ -68,13 +72,13 @@ def percentagetoString(sp_total, sp_ocupied):
 
 class ForeachWriter:
     def open(self, partition_id, epoch_id):
+        #print(partition_id, epoch_id)
         return True
 
     def process(self, row):
         # Write row to connection. This method is NOT optional in Python.
         
         row = json.loads(row['value'].decode("UTF-8"))
-        
         #Routine for Slots
         totalSpots = row["device_spots"]
         row['slotsUpdated'] = []
@@ -92,8 +96,7 @@ class ForeachWriter:
         areaInfo = {}
         areaInfo.update(area_id=row['device_area_id'],area_name=row['device_area_name'],area_description="shot description",
                         area_occupation=row['area_occupation'], area_occupied_spots=row['area_occupied_spots'],
-                        area_total_spots=row['area_total_spots'], area_available_spots=row['area_available_spots'], 
-                        area_occupation_percentage=str(row['area_occupation_percentage'])) 
+                        area_total_spots=row['area_total_spots'], area_available_spots=row['area_available_spots']) 
         #device area_color
         if row['device_area_name'] == "A":
             areaInfo.update(area_color="#3244a8", area_description="blue")
@@ -106,7 +109,7 @@ class ForeachWriter:
         else:
             areaInfo.update(area_color="#ffffff", area_description="black")
 
-        with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'/area_summary.json', 'r') as f:
+        with open("/opt/smart-parking/Python/GetData/Parkings/"+row["parking_name"]+'area_summary.json', 'r') as f:
             dictAreaSummary = json.load(f)
 
         areaInfo.update(area_summary=dictAreaSummary)
@@ -118,12 +121,7 @@ class ForeachWriter:
             SLTINFO['slot_state'] = slot[1]
             SLTINFO['slot_description'] = slot[0]+row['device_area_name'].upper()
             SLTINFO['slot_price'] = "200"
-            if row['device_area_name'] == "A" and row['device_level_id'] == "1":
-                SLTINFO['slot_type'] = "motorcycles"
-            elif row['device_area_name'] == "B" and row['device_area_name'] == "C" and row['device_level_id'] == "1" and int(slot[0]) < 5:
-                SLTINFO['slot_type'] = "trucks"
-            else:
-                SLTINFO['slot_type'] = "cars"
+            SLTINFO['slot_type'] = "cars"
             #POSIBLE INTEGRACION
             # if slot[1]:
             #     SLTINFO['slot_price'] = "200"
@@ -163,9 +161,9 @@ class ForeachWriter:
         
         # TO DO
         levelInfo['level_average_price'] = str(sumaTotalLevelSlots / len(JsonAreas['areas']))
-        levelInfo.update(level_occupation=percentagetoString(sumaTotalLevelSlots, sumaOccuLevelSlots), level_occupied_spots=str(sumaOccuLevelSlots),
+        levelInfo.update(level_occupation=percentagetoString(sumaTotalLevelSlots, sumaOccuLevelSlots), level_occupied_spots=sumaOccuLevelSlots,
             level_available_spots= str(sumaAvailableLevelSlots),level_total_spots=str(sumaTotalLevelSlots),
-            level_occupation_percentage=str(percentageOcuppation(sumaTotalLevelSlots, sumaOccuLevelSlots)), areas=JsonAreas['areas'])
+            level_occupation_percentage=percentageOcuppation(sumaTotalLevelSlots, sumaOccuLevelSlots), areas=JsonAreas['areas'])
 
         #levelInfo.update(level_occupation=percentagetoString(sumaTotalLevelSlots, sumaOccuLevelSlots), level_occupied_slots=sumaOccuLevelSlots,
         #                level_total_slots=sumaTotalLevelSlots, areas=JsonAreas['areas'])
@@ -181,15 +179,7 @@ class ForeachWriter:
             f.write(json.dumps(JsonLevels))
         
         parkingInfo = {"parking_id": row["parking_id"]}
-        
-        if row['parking_name'] == "TresCrucesShopping":
-            parkingInfo.update(parking_name="Shopping Tres Cruces")
-        elif row['parking_name'] == "PuntaCarretasShopping":
-            parkingInfo.update(parking_name="Shopping Punta Carretas")
-        else:
-            parkingInfo.update(parking_name=row['parking_name'])
-
-        parkingInfo.update(parking_description=row['parking_description'],
+        parkingInfo.update(parking_name=row['parking_name'], parking_description=row['parking_description'],
             parking_address=row['parking_address'], parking_closed=False, parking_latitude=str(row['parking_latitude']),
             parking_longitude=str(row['parking_longitude']), parking_weather_status=row['parking_weather_status'],
             parking_weather_status_detailed=row['parking_weather_status_detailed'], parking_wind_speed=row['parking_wind_speed'],
@@ -212,7 +202,7 @@ class ForeachWriter:
         
     def close(self, error):
         # Close the connection. This method in optional in Python.
-        #print(error)
+        print(error)
         pass
 
 def main():
