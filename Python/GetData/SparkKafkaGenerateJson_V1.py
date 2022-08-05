@@ -222,7 +222,7 @@ def main():
     spark_dir_utils = "/opt/smart-parking/Python/Spark-Jars-Utils/"
     spark = (SparkSession
             .builder
-            .master('spark://192.168.68.10:7077')
+            .master('local[*]')
             .appName(parking+"ToBackend")
             .config('spark.jars', 'file:///opt/smart-parking/Python/Spark-Jars-Utils/spark-sql-kafka-0-10_2.12-3.2.1.jar,file:///opt/smart-parking/Python/Spark-Jars-Utils/kafka-clients-3.1.0.jar')
             .config('spark.executor.extraClassPath','file:///opt/smart-parking/Python/Spark-Jars-Utils/spark-sql-kafka-0-10_2.12-3.2.1.jar:file:///opt/smart-parking/Python/Spark-Jars-Utils/kafka-clients-3.1.0.jar')
