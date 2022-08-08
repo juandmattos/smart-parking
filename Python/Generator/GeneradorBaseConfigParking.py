@@ -5,48 +5,56 @@ import json
 import getopt
 from datetime import datetime
 from venv import create
+import argparse
 from geopy.geocoders import Nominatim 
 
-def getParameters(argv):
-    try:
-        opts, args = getopt.getopt(argv, "h:d:a:n:i:c", ["help", "description=", "address=", "name=", "id=", "create"])
-    except getopt.GetoptError:
-        print("Opcion no valida")
-        usage()            
-        sys.exit(2)   
-    
-    create = False
-    description = ""
-    address = ""
-    name = ""
-    id = ""
-    for opt, arg in opts:
-        if opt in ("-h", "--help"):      
-            usage()               
-            sys.exit()                  
-        elif opt in ('-d', "--description"):
-            description = arg
-            print(description)
-        elif opt in ('-a', "--address"):
-            address = arg
-        elif opt in ('-n', "--name"):
-            name = arg.replace(" ", "")
-        elif opt in ('-c', "--create"):
-            create = True
-        elif opt in ('-i', '--id'):
-            id = arg
-    return create, description, address, name, id
+def get_args():
+    parser = argparse.ArgumentParser()
 
-def usage():
-    print("""
-Opciones:
---help (-h)\t\tMenu de Opciones del programa
---description (-d)\t\tDescripcion del parking (Mandatorio)
---address (-a)\t\tNombre de la Calle y numero de puerta del Parking (Mandatorio)
---name (-n)\t\tNombre del Parking (Mandatorio)
---id (-i)\t\tID del parking(Mandatorio)
---create (-c)\t\tFuncion de creacion del directorio del parking
-""")
+    parser.add_argument(
+        "-p",
+        "--parking",
+        help="Parking Name",
+        dest="parking",
+        choices=["PuntaCarretasShopping", "TresCrucesShopping"],
+        required=True,
+    )
+
+    parser.add_argument(
+        "-d",
+        "--description",
+        help="Parking description",
+        dest="description",
+        required=True,
+    )
+
+    parser.add_argument(
+        "-a",
+        "--address",
+        help="Parking address",
+        dest="address",
+        required=True,
+    )
+
+    parser.add_argument(
+        "-i",
+        "--id",
+        help="Parking ID",
+        dest="id",
+        required=True,
+    )
+
+    parser.add_argument(
+        "-c",
+        "--create",
+        help="Create Action device",
+        dest="create",
+        default=bool,
+        required=True,
+    )
+
+    return parser.parse_args()
+
 
 def normalize_string(s):
     replacements = (
@@ -74,12 +82,17 @@ def main():
     dirGeneral = "/opt/data/Generator/Parkings/"
 
     parking_uuid = uuid.uuid4().urn.split(":")[-1]
-    create_opt, parking_description, parking_address, parking_name, parking_id = getParameters(sys.argv[1:])
+
+    args = get_args()
+    parking_name = args.parking
+    parking_description = args.description
+    parking_address = args.address
+    parking_id = args.id
+    create_opt = args.create
     print(create_opt, parking_address, parking_description, parking_name, parking_id)
 
     if parking_name == "" or parking_address == "" or parking_description == "" or parking_id == "":
         print("Las opciones --description (-d), --address (-a), --name (-n) y --id (-i) son obligatorias...")
-        usage()
         sys.exit()
     else:
         contenido = os.listdir(dirGeneral)
