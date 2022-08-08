@@ -101,7 +101,7 @@ def main():
         geolocator = Nominatim(user_agent="Parking_point")
         location = geolocator.geocode(parking_address) 
 
-        if create_opt and "BaseConfig" in contenido:
+        if create_opt:
             
             os.makedirs(dirGeneral+parking_name+"/ActiveDevices",  exist_ok=True)
             os.system("cp -r /opt/smart-parking/Python/Generator/BaseConfig/producerBaseConfig.json "+dirGeneral+parking_name+"/producer"+parking_name+".json")
