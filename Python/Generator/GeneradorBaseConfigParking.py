@@ -49,7 +49,8 @@ def get_args():
         "--create",
         help="Create Action device",
         dest="create",
-        default=bool,
+        type=bool,
+        default=True,
         required=True,
     )
 
@@ -85,7 +86,7 @@ def main():
 
     args = get_args()
     parking_name = args.parking
-    parking_description = args.description
+    parking_description = args.description 
     parking_address = args.address
     parking_id = args.id
     create_opt = args.create
@@ -129,7 +130,6 @@ def main():
             print(location.latitude)
             print(location.longitude)
             print(parking_uuid)
-            pass
             
             
     
