@@ -71,7 +71,7 @@ def main():
     este script esta diseñado para la generación de un nuevo Parking
     para la integración dentro del Sistema de BigData\n\n""")
 
-    dirGeneral = "/opt/smart-parking/Python/Generator/"
+    dirGeneral = "/opt/data/Generator/Parkings/"
 
     parking_uuid = uuid.uuid4().urn.split(":")[-1]
     create_opt, parking_description, parking_address, parking_name, parking_id = getParameters(sys.argv[1:])
@@ -89,12 +89,10 @@ def main():
 
         if create_opt and "BaseConfig" in contenido:
             
-            os.makedirs(dirGeneral+"Parkings/"+parking_name+"/ActiveDevices",  exist_ok=True
-            
-            )
-            os.system("cp -r "+dirGeneral+"BaseConfig/producerBaseConfig.json "+dirGeneral+"Parkings/"+parking_name+"/producer"+parking_name+".json")
+            os.makedirs(dirGeneral+parking_name+"/ActiveDevices",  exist_ok=True)
+            os.system("cp -r /opt/smart-parking/Python/Generator/BaseConfig/producerBaseConfig.json "+dirGeneral+parking_name+"/producer"+parking_name+".json")
 
-            with open(dirGeneral+"Parkings/"+parking_name+"/producer"+parking_name+".json", "r") as file:
+            with open(dirGeneral+parking_name+"/producer"+parking_name+".json", "r") as file:
                 data = json.load(file)
 
             data.update(parking_address=normalize_string(location.address),
@@ -102,11 +100,11 @@ def main():
                         parking_name=parking_name,
                         parking_latitude=location.latitude,
                         parking_longitude=location.longitude,
-                        parking_uuid=parking_uuid, 
+                        parking_uuid=parking_uuid,
                         parking_id=parking_id)
-            json_data = json.dumps(data, indent = 2)
+            json_data = json.dumps(data)
             
-            with open(dirGeneral+"Parkings/"+parking_name+"/producer"+parking_name+".json", "w") as file:
+            with open(dirGeneral+parking_name+"/producer"+parking_name+".json", "w") as file:
                 file.write(json_data)
         else:
             #  print information for the creation

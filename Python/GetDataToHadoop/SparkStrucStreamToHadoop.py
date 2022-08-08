@@ -3,13 +3,11 @@
 
 import os
 import argparse
-import re
 import findspark
-from pyspark.sql.window import Window
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 from pyspark.sql.functions import *
-import logging
+from kafka import KafkaConsumer
 
 global parking
 
@@ -126,8 +124,9 @@ def func(batch_df, batch_id):
 
 
 def main():
-    directory = "/opt/smart-parking/Python/GetData/Parkings"
-    parkings = os.listdir(directory)
+    
+    consumer = KafkaConsumer(bootstrap_servers=['hadoop-namenode'])
+    parkings = list(consumer.topics())
     parser = argparse.ArgumentParser(
         description="Load Data to Hadoop with Spark Streaming")
     parser.add_argument("-p", "--parking", action="store", required=True,

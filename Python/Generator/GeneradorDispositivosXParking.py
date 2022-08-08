@@ -2,7 +2,8 @@ import os
 import string
 import random
 
-directorios = os.listdir("/opt/smart-parking/Python/Generator/Parkings")
+dirGeneral = "/opt/data/Generator/Parkings/"
+directorios = os.listdir(dirGeneral)
 op = 0
 print("###########################################################")
 print("##                                                       ##")
@@ -35,7 +36,7 @@ if op == 1:
             devices.append(''.join(random.choice(string.ascii_uppercase[0:6] + string.digits) for _ in range(length_of_string)))
         devicesFinal[d] = devices
         
-        with open("/opt/smart-parking/Python/Generator/Parkings/"+d+"/"+d+"Devices.txt", "w+") as f:
+        with open(dirGeneral+d+"/"+d+"Devices.txt", "w+") as f:
             f.write("\n".join(devicesFinal[d]))
             f.write("\n")
 elif op == 2:
@@ -54,7 +55,7 @@ elif op == 2:
     for x in range(number_of_strings):
         devices.append(''.join(random.choice(string.ascii_uppercase[0:6] + string.digits) for _ in range(length_of_string)))
     
-    with open("/opt/smart-parking/Python/Generator/Parkings/"+parking+"/"+parking+"Devices.txt", "w+") as f:
+    with open(dirGeneral+parking+"/"+parking+"Devices.txt", "w+") as f:
         f.write("\n".join(devices))
         f.write("\n")
 elif op == 9:

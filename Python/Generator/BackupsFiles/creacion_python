@@ -1,18 +1,18 @@
-spsystem  1583     1  0 Jul13 ?        02:23:07 python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 1 -ai 1 -an A -d 1450F8D346D80142 -q 10
-spsystem  1588     1  0 Jul13 ?        02:22:42 python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 1 -ai 2 -an B -d 6CD5B69AA55A998F -q 10
-spsystem  1591     1  0 Jul13 ?        02:22:46 python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 1 -ai 3 -an C -d F169C92836C6BD61 -q 10
-spsystem  1594     1  0 Jul13 ?        02:22:58 python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 2 -ai 1 -an A -d 8EC1B2C496D79789 -q 10
-spsystem  1597     1  0 Jul13 ?        02:22:53 python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 2 -ai 2 -an B -d 0587422811790E54 -q 10
-spsystem  1600     1  0 Jul13 ?        02:22:24 python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 2 -ai 3 -an C -d 3B6C05ACE681A093 -q 10
-spsystem  1603     1  0 Jul13 ?        02:22:22 python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 2 -ai 4 -an D -d 17665E7B44E5EFDC -q 10
-spsystem  1606     1  0 Jul13 ?        02:23:18 python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 3 -ai 1 -an A -d 7E1C75F22B089FB9 -q 10
-spsystem  1609     1  0 Jul13 ?        02:22:57 python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 3 -ai 2 -an B -d 7A7C63A8F2813646 -q 10
-spsystem  1630     1  0 Jul13 ?        02:25:18 python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 1 -ai 1 -an A -d 327671F2009776BE -q 10
-spsystem  1633     1  0 Jul13 ?        02:24:10 python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 1 -ai 2 -an B -d DD5F6C5BDA3D7A95 -q 10
-spsystem  1637     1  0 Jul13 ?        02:23:20 python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 1 -ai 3 -an C -d 4DE1C372D9293D6F -q 10
-spsystem  1640     1  0 Jul13 ?        02:22:36 python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 2 -ai 1 -an A -d 9AA1AD57EC8B8856 -q 10
-spsystem  1643     1  0 Jul13 ?        02:22:46 python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 2 -ai 2 -an B -d 64ED8BB2354F293B -q 10
-spsystem  1646     1  0 Jul13 ?        02:23:21 python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 2 -ai 3 -an C -d 51FE29B1E7DACCB6 -q 10
-spsystem  1649     1  0 Jul13 ?        02:24:11 python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 2 -ai 4 -an D -d 5AF3A94B18BC85EC -q 10
-spsystem  1652     1  0 Jul13 ?        02:23:43 python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 3 -ai 1 -an A -d CE6EFF5988ECBF74 -q 10
-spsystem  1655     1  0 Jul13 ?        02:23:21 python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 3 -ai 2 -an B -d FCB85470B7C0E0CC -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 1 -ai 1 -an A -d 1450F8D346D80142 -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 1 -ai 2 -an B -d 6CD5B69AA55A998F -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 1 -ai 3 -an C -d F169C92836C6BD61 -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 2 -ai 1 -an A -d 8EC1B2C496D79789 -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 2 -ai 2 -an B -d 0587422811790E54 -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 2 -ai 3 -an C -d 3B6C05ACE681A093 -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 2 -ai 4 -an D -d 17665E7B44E5EFDC -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 3 -ai 1 -an A -d 7E1C75F22B089FB9 -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p PuntaCarretasShopping -l 3 -ai 2 -an B -d 7A7C63A8F2813646 -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 1 -ai 1 -an A -d 327671F2009776BE -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 1 -ai 2 -an B -d DD5F6C5BDA3D7A95 -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 1 -ai 3 -an C -d 4DE1C372D9293D6F -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 2 -ai 1 -an A -d 9AA1AD57EC8B8856 -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 2 -ai 2 -an B -d 64ED8BB2354F293B -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 2 -ai 3 -an C -d 51FE29B1E7DACCB6 -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 2 -ai 4 -an D -d 5AF3A94B18BC85EC -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 3 -ai 1 -an A -d CE6EFF5988ECBF74 -q 10
+python Producer-Parkings-Kafka-Streaming_V4.py -p TresCrucesShopping -l 3 -ai 2 -an B -d FCB85470B7C0E0CC -q 10
