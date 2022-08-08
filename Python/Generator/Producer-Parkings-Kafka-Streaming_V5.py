@@ -9,7 +9,7 @@ import sys
 import pyowm
 from kafka import KafkaProducer
 import holidays
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 # DIFERENTES RUTINAS DE ENTRADA Y DATOS NECESARIOS PARA SU USO
 dirgeneral = "/opt/data/Generator/Parkings/"
@@ -147,7 +147,7 @@ def main():
     # Values used to random function
     lista_estado_puestos = [False for n in range(1,num_puestos + 1)]
     lista_auxTemp = [0 for n in range(1, num_puestos + 1)]
-    rango = [2, 5, 10, 20, 30, 45, 60, 120, 240]
+    rango = [2, 3, 5, 7, 8, 10, 12, 15, 20, 25, 30, 45, 60, 90, 115, 120, 240]
     #rango = [1, 2]
     slot_states = [True, False]
 
@@ -199,7 +199,7 @@ def main():
             now = datetime.now()
             #print("NOW - " + str(now))
             if today.day == now.day:
-                auxDate = datetime(now.year, now.month, now.day)
+                auxDate = date(now.year, now.month, now.day)
                 if auxDate in feriadosLaborales:
                     data['parking_holiday_status'] = True
                     data['parking_holiday_description'] = dataHolidaysDict[auxDate]
