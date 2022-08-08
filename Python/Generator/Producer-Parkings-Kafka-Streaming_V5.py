@@ -12,7 +12,7 @@ import holidays
 from datetime import datetime, timedelta
 
 # DIFERENTES RUTINAS DE ENTRADA Y DATOS NECESARIOS PARA SU USO
-dirgeneral = "/opt/smart-parking/Python/Generator/Parkings/"
+dirgeneral = "/opt/data/Generator/Parkings/"
 
 def getAvailableParkings(directorios):
     print("\nThe next are available parkings: \n")
