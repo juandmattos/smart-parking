@@ -9,20 +9,44 @@ const FULL = 'Full'
 
 const PARKING_API_CODE = 'parkings'
 
-const OCCUPATION_TOLERANCE = 30;
+const OCCUPATION_TOLERANCE = 10;
 
-const getOccupationDescription = (occ) => {
-  switch(occ) {
-    case EMPTY:
-      return 'Relativamente Libre'
-    case ALMOST_EMPTY:
-      return 'Relativamente Libre'
-    case ALMOST_FULL:
-      return 'Relativamente Ocupado' 
-    case FULL:
-      return 'Muy Ocupado'
-    default:
-      return 'No hay información'       
+const getOccupationDescription = (occ, occupation_percentage) => {
+  if (!occupation_percentage) {
+    switch(occ) {
+      case EMPTY:
+        return 'Relativamente Libre'
+      case ALMOST_EMPTY:
+        return 'Relativamente Libre'
+      case ALMOST_FULL:
+        return 'Relativamente Ocupado' 
+      case FULL:
+        return 'Muy Ocupado'
+      default:
+        return 'No hay información'       
+    }
+  } else {
+    const occupation = Math.floor(occupation_percentage/10)
+    switch (occupation) {
+      case 0:
+        return 'Libre'
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        return 'Relativamente Libre'
+      case 5:
+      case 6:
+      case 7:
+        return 'Relativamente Ocupado'
+      case 8:
+      case 9:
+        return 'Muy Ocupado'
+      case 10:
+        return 'No hay lugar'
+      default:
+        return 'Relativamente Libre'
+    }
   }
 }
 

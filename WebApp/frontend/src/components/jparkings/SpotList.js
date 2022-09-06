@@ -43,19 +43,7 @@ const SpotList = props => {
       <section className={classes.centered}>
         <h1>Lugares del Parking</h1>
         <div className={classes.linkContainer}>
-          <Link 
-            to={`/parkings/${props.parkingId}/${props.levelId}`}
-            style={{
-              color: 'inherit',
-              textDecoration: 'inherit',
-              marginRight: '2rem'
-            }}
-          >        
-            <p className={classes.back}>
-              {`< Volver`}
-            </p>
-          </Link>
-          <Link 
+          <Link
             to={`/parkings/summary/${props.parkingId}`}
             style={{
               color: 'inherit',

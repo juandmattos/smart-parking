@@ -14,18 +14,40 @@ import {
   FULL,
 } from '../../utils'
 
-const getClass = (occupation) => {
-  switch(occupation){
-    case EMPTY:
-      return classes.free
-    case ALMOST_EMPTY:
-      return classes.free  
-    case ALMOST_FULL:
-      return classes.mid  
-    case FULL:
-      return classes.used  
-    default:
-      return ''      
+const getClass = (occupation, occupation_percentage) => {
+  if (!occupation_percentage) {
+    switch(occupation){
+      case EMPTY:
+        return classes.free
+      case ALMOST_EMPTY:
+        return classes.free  
+      case ALMOST_FULL:
+        return classes.mid  
+      case FULL:
+        return classes.used  
+      default:
+        return ''      
+    }
+  } else {
+    const occ = Math.floor(occupation_percentage/10)
+    switch (occ) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        return classes.free
+      case 5:
+      case 6:
+      case 7:
+        return classes.mid
+      case 8:
+      case 9:
+      case 10:
+        return classes.used
+      default:
+        return classes.free
+    }
   }
 }
 
@@ -47,7 +69,7 @@ const areaSummary = (hasFreeHours, freeHourUntil, monthFee, isHoliday, holidayTy
 
 const SummaryArea = ({ area, level, parkingId, ind, parkingSummary, parkingDisabled, parkingIsHoliday, parkingHolidayType }) => {
   return (
-    <div className={`${classes.areaContainer} ${getClass(area.area_occupation)}`}>
+    <div className={`${classes.areaContainer} ${getClass(area.area_occupation, area.area_occupation_percentage)}`}>
       <div className={classes.info}>
         <span className={classes.levelArea}>
           {parkingDisabled ? (
@@ -82,7 +104,7 @@ const SummaryArea = ({ area, level, parkingId, ind, parkingSummary, parkingDisab
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <p className={classes.desc}>
-              {getOccupationDescription(area.area_occupation)}
+              {getOccupationDescription(area.area_occupation, area.area_occupation_percentage)}
             </p>
           </div>
           <span className={classes.averagePrice} style={{ marginTop: '0.3rem' }}>
