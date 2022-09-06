@@ -87,17 +87,25 @@ const getIcon = (type) => {
   }
 }
 
+/**
+ * '0to20Coef'
+ * '20to40Coef'
+ * '40to60Coef'
+ * '60to80Coef'
+ * '80to100Coef'
+ * 
+ */
+
 const occupationDiccionary = (occupation) => {
   switch (occupation) {
     case 0:
     case 1:
-      return '0to20Coef'
     case 2:
+      return '0to20Coef'
     case 3:
-      return '20to40Coef'
     case 4:
+      return '20to40Coef'
     case 5:
-      return '40to60Coef'
     case 6:
     case 7:
       return '60to80Coef'
