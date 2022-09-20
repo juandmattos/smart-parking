@@ -1,0 +1,17 @@
+{
+  "levels": 1,
+  "areas": [
+    {
+      "areas_level_1": [
+        {
+          "area_id": "1",
+          "area_name": "A"
+        },
+        {
+          "area_id": "2",
+          "area_name": "B"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "parking_name":"Smart Parking Model Test",
+  "parking_address":"Bvr. Gral. Artigas 2107, Montevideo, Uruguay",
+  "parking_description":"Maqueta realizada en casa con Arduino, Xbee y Sensores IR",
+  "device_timestamp":"02/05/2022 17:00:00",
+  "device_id":"0013A2004147A0AA",
+  "device_latitude":-34.88847289464252,
+  "device_longitude":-56.165987228247765,
+  "parking_temperature":12,
+  "parking_humidity":50,
+  "parking_uuid":"c735c96a-d503-483a-a124-694452c7f03c",
+  "parking_id":"0",
+  "device_level_id":"1",
+  "device_area_id":"1",
+  "device_area_name":"A",
+  "device_spots":"5",
+  "device_slots":[
+  ]
+}

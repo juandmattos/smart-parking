@@ -1,0 +1,63 @@
+{
+    "coefficients": {
+        "0to20Coef": "1.1",
+        "20to40Coef": "1.2",
+        "40to60Coef": "1.4",
+        "60to80Coef": "1.8",
+        "80to100Coef": "2"
+    },
+    "hasDynamicPrice": true,
+    "levels": [
+        {
+            "level_id": "1",
+            "areas": [
+                {
+                    "area_id": "1",
+                    "area_occupation_percentage_target": "15"
+                },
+                {
+                    "area_id": "2",
+                    "area_occupation_percentage_target": "20"
+                },
+                {
+                    "area_id": "3",
+                    "area_occupation_percentage_target": "30"
+                }
+            ]
+        },
+        {
+            "level_id": "2",
+            "areas": [
+                {
+                    "area_id": "1",
+                    "area_occupation_percentage_target": "15"
+                },
+                {
+                    "area_id": "2",
+                    "area_occupation_percentage_target": "20"
+                },
+                {
+                    "area_id": "3",
+                    "area_occupation_percentage_target": "30"
+                },
+                {
+                    "area_id": "4",
+                    "area_occupation_percentage_target": "60"
+                }
+            ]
+        },
+        {
+            "level_id": "3",
+            "areas": [
+                {
+                    "area_id": "1",
+                    "area_occupation_percentage_target": "15"
+                },
+                {
+                    "area_id": "2",
+                    "area_occupation_percentage_target": "80"
+                }
+            ]
+        }
+    ]
+}
